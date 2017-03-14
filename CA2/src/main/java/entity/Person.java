@@ -9,19 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Person implements Serializable {
+public class Person extends InfoEntity {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String firstName;
     private String lastName;
     @ManyToMany
     private List<Hobby> hobbies;
 
-    public Integer getId() {
-        return id;
+    public Person() {
+    }
+
+    public Person(String firstName, String lastName, List<Hobby> hobbies, Integer id, String email, List<Phone> phones, List<Address> addresses) {
+        super(id, email, phones, addresses);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hobbies = hobbies;
     }
 
 }

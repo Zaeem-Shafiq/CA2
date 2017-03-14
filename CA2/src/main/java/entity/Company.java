@@ -1,25 +1,27 @@
 package entity;
 
-import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class Company implements Serializable {
+public class Company extends InfoEntity {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
     private String description;
     private Integer cvr;
     private Integer numEmployees;
     private Integer marketValue;
 
-    public Integer getId() {
-        return id;
+    public Company() {
     }
+
+    public Company(String name, String description, Integer cvr, Integer numEmployees, Integer marketValue, Integer id, String email, List<Phone> phones, List<Address> addresses) {
+        super(id, email, phones, addresses);
+        this.name = name;
+        this.description = description;
+        this.cvr = cvr;
+        this.numEmployees = numEmployees;
+        this.marketValue = marketValue;
+    }
+    
 }
