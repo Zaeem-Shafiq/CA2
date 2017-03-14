@@ -1,7 +1,9 @@
 package entity;
 
+import com.sun.javafx.css.CascadingStyle;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +22,12 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
-    @OneToMany(mappedBy = "infoEntity")
+    
+    @OneToMany(mappedBy = "infoEntity",cascade = CascadeType.PERSIST)
     private List<Phone> phones;
     
    
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
     public InfoEntity() {

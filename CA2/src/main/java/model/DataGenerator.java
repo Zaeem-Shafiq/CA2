@@ -2,12 +2,12 @@ package model;
 
 import entity.Address;
 import entity.CityInfo;
+import entity.Company;
 import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
@@ -38,42 +38,31 @@ public class DataGenerator {
 //        for (int i = 0; i < 50; i++) {
 //        createPhoneNumbers();            
 //        }
-
+//
 //        for (int i = 0; i < 50; i++) {
 //            createRandomPerson();
 //
 //        }
-//        for (int i = 1; i <= 50; i++) {
-//            updatePhone(i);
+//        for (int i = 0; i < 50; i++) {
+//            createRandomCompany();
 //        }
-
+        
+        createRandomPerson();
+          
     }
-
-    public InfoEntity getInfoEntity(int id) {
+    
+    public void createRandomCompany() {
+        List<Phone> phones = new ArrayList();
+        phones.add(getPhone(ran.nextInt(50) + 1));
+        Company company = new Company("Polygon", "Polygon stuff",100000 + ran.nextInt(90000000), ran.nextInt(200)+10, 2000, "polygon@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
         EntityManager em = getManager();
-        InfoEntity infoEntity = null;
         try {
             em.getTransaction().begin();
-            infoEntity = em.find(InfoEntity.class, id);
+            em.persist(company);
             em.getTransaction().commit();
         } catch (RollbackException r) {
+            r.printStackTrace();
             em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return infoEntity;
-    }
-
-    public void updatePhone(int id) {
-        EntityManager em = getManager();
-        try {
-            em.getTransaction().begin();
-            Phone p = em.find(Phone.class, id);
-            p.setInfoEntity(getInfoEntity(id));
-            em.merge(p);
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-
         } finally {
             em.close();
         }
@@ -83,8 +72,8 @@ public class DataGenerator {
         List<Hobby> hobbies = new ArrayList();
         hobbies.add(getHobby(ran.nextInt(2) + 1));
         List<Phone> phones = new ArrayList();
-        phones.add(getPhone(ran.nextInt(50) + 1));
-        Person person = new Person("Asger", "Lundblad", hobbies, "asger@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
+        Person person = new Person("Joacim", "Vetterlain", hobbies, "jmv0691@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
+        phones.add(new Phone(person, 100000 + ran.nextInt(90000000)+"", "noget nyt"));        
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
