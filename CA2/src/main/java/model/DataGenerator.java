@@ -43,12 +43,12 @@ public class DataGenerator {
 //            createRandomPerson();
 //
 //        }
-//        for (int i = 1; i <= 50; i++) {
-//            updatePhone(i);
+//        for (int i = 0; i < 50; i++) {
+//            createRandomCompany();
 //        }
-        for (int i = 0; i < 50; i++) {
-            createRandomCompany();
-        }
+        
+        createRandomPerson();
+          
     }
     
     public void createRandomCompany() {
@@ -68,42 +68,12 @@ public class DataGenerator {
         }
     }
 
-    public InfoEntity getInfoEntity(int id) {
-        EntityManager em = getManager();
-        InfoEntity infoEntity = null;
-        try {
-            em.getTransaction().begin();
-            infoEntity = em.find(InfoEntity.class, id);
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return infoEntity;
-    }
-
-    public void updatePhone(int id) {
-        EntityManager em = getManager();
-        try {
-            em.getTransaction().begin();
-            Phone p = em.find(Phone.class, id);
-            p.setInfoEntity(getInfoEntity(id));
-            em.merge(p);
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-
-        } finally {
-            em.close();
-        }
-    }
-
     public void createRandomPerson() {
         List<Hobby> hobbies = new ArrayList();
         hobbies.add(getHobby(ran.nextInt(2) + 1));
         List<Phone> phones = new ArrayList();
-        phones.add(getPhone(ran.nextInt(50) + 1));
-        Person person = new Person("Asger", "Lundblad", hobbies, "asger@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
+        Person person = new Person("Joacim", "Vetterlain", hobbies, "jmv0691@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
+        phones.add(new Phone(person, 100000 + ran.nextInt(90000000)+"", "noget nyt"));        
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
