@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,17 +22,18 @@ public class InfoEntity implements Serializable {
     private String email;
     @OneToMany(mappedBy = "infoEntity")
     private List<Phone> phones;
-    @OneToMany(mappedBy = "infoEntity")
-    private List<Address> addresses;
+    
+   
+    @ManyToOne
+    private Address address;
 
     public InfoEntity() {
     }
 
-    public InfoEntity(Integer id, String email, List<Phone> phones, List<Address> addresses) {
-        this.id = id;
+    public InfoEntity(String email, List<Phone> phones, Address address) {
         this.email = email;
         this.phones = phones;
-        this.addresses = addresses;
+        this.address = address;
     }
     
     public Integer getId() {

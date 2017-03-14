@@ -15,8 +15,8 @@ public class Company extends InfoEntity {
     public Company() {
     }
 
-    public Company(String name, String description, Integer cvr, Integer numEmployees, Integer marketValue, Integer id, String email, List<Phone> phones, List<Address> addresses) {
-        super(id, email, phones, addresses);
+    public Company(String name, String description, Integer cvr, Integer numEmployees, Integer marketValue, String email, List<Phone> phones, Address address) {
+        super(email, phones, address);
         this.name = name;
         this.description = description;
         this.cvr = cvr;

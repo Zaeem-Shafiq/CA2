@@ -20,6 +20,17 @@ public class Hobby implements Serializable {
     @ManyToMany(mappedBy = "hobbies")
     private List<Person> persons;
 
+    public Hobby() {
+    }
+
+    public Hobby(String name, String description, List<Person> persons) {        
+        this.name = name;
+        this.description = description;
+        this.persons = persons;
+    }
+
+    
+    
     public Integer getId() {
         return id;
     }

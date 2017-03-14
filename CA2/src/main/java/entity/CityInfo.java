@@ -13,10 +13,21 @@ public class CityInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer zipCode;
+    private Integer zip;
     private String city;
 
     public Integer getId() {
         return id;
     }
+
+    public CityInfo() {
+    }
+
+    public CityInfo(Integer id, Integer zip, String city) {
+        this.id = id;
+        this.zip = zip;
+        this.city = city;
+    }
+    
+    
 }
