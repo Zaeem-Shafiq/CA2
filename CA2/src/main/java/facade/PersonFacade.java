@@ -8,8 +8,8 @@ import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
-public class CompanyFacade {
-
+public class PersonFacade {
+    
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
     public EntityManager getEntityManager() {
@@ -17,9 +17,9 @@ public class CompanyFacade {
     }
 
     public static void main(String[] args) {
-        CompanyFacade cf = new CompanyFacade();
-        System.out.println(cf.getPerson(1).toString());
-        System.out.println(cf.getPersons().toString());
+        PersonFacade pf = new PersonFacade();
+        System.out.println(pf.getPerson(1).toString());
+        System.out.println(pf.getPersons().toString());
     }
     
     public Person getPerson(int id) {
@@ -55,5 +55,4 @@ public class CompanyFacade {
         return persons;
     }
     
-
 }

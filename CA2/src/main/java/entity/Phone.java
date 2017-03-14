@@ -37,11 +37,7 @@ public class Phone implements Serializable {
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
     }
-    
-   
 
-    
-    
     public Integer getId() {
         return id;
     }
@@ -50,6 +46,5 @@ public class Phone implements Serializable {
     public String toString() {
         return "Phone{" + "infoEntity=" + infoEntity + ", id=" + id + ", number=" + number + ", description=" + description + '}';
     }
-    
-    
+
 }

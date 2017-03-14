@@ -22,11 +22,9 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
-    
-    @OneToMany(mappedBy = "infoEntity",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.PERSIST)
     private List<Phone> phones;
-    
-   
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
@@ -38,7 +36,7 @@ public class InfoEntity implements Serializable {
         this.phones = phones;
         this.address = address;
     }
-    
+
     public Integer getId() {
         return id;
     }

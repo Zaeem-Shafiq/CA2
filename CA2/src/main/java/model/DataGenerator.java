@@ -14,10 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 
-/**
- *
- * @author Joacim
- */
 public class DataGenerator {
 
     Random ran = new Random();
