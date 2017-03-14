@@ -29,7 +29,10 @@ public class Hobby implements Serializable {
         this.persons = persons;
     }
 
-    
+    public Hobby(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }    
     
     public Integer getId() {
         return id;

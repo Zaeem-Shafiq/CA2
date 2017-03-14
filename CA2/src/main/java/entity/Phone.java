@@ -20,7 +20,36 @@ public class Phone implements Serializable {
     private String number;
     private String description;
 
+    public Phone(String number, String description) {
+        this.number = number;
+        this.description = description;
+    }
+
+    public Phone(InfoEntity infoEntity, String number, String description) {
+        this.infoEntity = infoEntity;
+        this.number = number;
+        this.description = description;
+    }
+
+    public Phone() {
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity) {
+        this.infoEntity = infoEntity;
+    }
+    
+   
+
+    
+    
     public Integer getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Phone{" + "infoEntity=" + infoEntity + ", id=" + id + ", number=" + number + ", description=" + description + '}';
+    }
+    
+    
 }

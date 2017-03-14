@@ -21,5 +21,7 @@ public class Person extends InfoEntity {
         this.lastName = lastName;
         this.hobbies = hobbies;
     }
+    
+    
 
 }
