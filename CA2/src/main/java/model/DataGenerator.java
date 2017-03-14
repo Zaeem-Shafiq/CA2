@@ -2,12 +2,12 @@ package model;
 
 import entity.Address;
 import entity.CityInfo;
+import entity.Company;
 import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
@@ -38,7 +38,7 @@ public class DataGenerator {
 //        for (int i = 0; i < 50; i++) {
 //        createPhoneNumbers();            
 //        }
-
+//
 //        for (int i = 0; i < 50; i++) {
 //            createRandomPerson();
 //
@@ -46,7 +46,26 @@ public class DataGenerator {
 //        for (int i = 1; i <= 50; i++) {
 //            updatePhone(i);
 //        }
-
+        for (int i = 0; i < 50; i++) {
+            createRandomCompany();
+        }
+    }
+    
+    public void createRandomCompany() {
+        List<Phone> phones = new ArrayList();
+        phones.add(getPhone(ran.nextInt(50) + 1));
+        Company company = new Company("Polygon", "Polygon stuff",100000 + ran.nextInt(90000000), ran.nextInt(200)+10, 2000, "polygon@gmail.com", phones, getAddress(ran.nextInt(50) + 1));
+        EntityManager em = getManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(company);
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
     }
 
     public InfoEntity getInfoEntity(int id) {
