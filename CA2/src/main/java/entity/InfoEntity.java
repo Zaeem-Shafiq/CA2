@@ -1,6 +1,5 @@
 package entity;
 
-import com.sun.javafx.css.CascadingStyle;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,7 +23,6 @@ public class InfoEntity implements Serializable {
     private String email;
     @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.PERSIST)
     private List<Phone> phones;
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
