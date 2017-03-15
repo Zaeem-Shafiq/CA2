@@ -33,5 +33,5 @@ public class CityInfo implements Serializable {
     public String toString() {
         return "CityInfo{" + "id=" + id + ", zip=" + zip + ", city=" + city + '}';
     }
-    
+
 }

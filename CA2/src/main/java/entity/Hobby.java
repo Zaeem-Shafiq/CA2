@@ -23,17 +23,17 @@ public class Hobby implements Serializable {
     public Hobby() {
     }
 
-    public Hobby(String name, String description, List<Person> persons) {        
+    public Hobby(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Hobby(String name, String description, List<Person> persons) {
         this.name = name;
         this.description = description;
         this.persons = persons;
     }
 
-    public Hobby(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }    
-    
     public Integer getId() {
         return id;
     }

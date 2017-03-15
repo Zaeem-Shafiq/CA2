@@ -21,7 +21,13 @@
     </persistence-unit>
     <persistence-unit name="pu_test" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>entity.Phone</class>
+        <class>entity.InfoEntity</class>
+        <class>entity.Address</class>
+        <class>entity.CityInfo</class>
+        <class>entity.Hobby</class>
         <class>entity.Person</class>
+        <class>entity.Company</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:myDB;create=true"/>
