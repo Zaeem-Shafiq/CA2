@@ -40,10 +40,10 @@ public class PersonFacadeTest {
     }
 
     @Test
-    public void testGetPersonByPhone() {        
+    public void testGetPersonByPhone() {
         assertEquals("Andy", pf.getPersonByPhoneNumber("12345671").getFirstName());
     }
-    
+
     @Test
     public void testGetPersons() {
         List<Person> p = pf.getPersons();
@@ -54,7 +54,12 @@ public class PersonFacadeTest {
     }
 
     @Test
-    public void testGetPersonByZip() {        
-        //assertEquals("Andy", pf.getPersonsByZip(1218));
+    public void testGetPersonByZip() {
+        List<Person> p = pf.getPersonsByZip(2720);
+        assertEquals(3, p.size());
+        assertEquals("Andy", p.get(0).getFirstName());
+        assertEquals("Taunya", p.get(1).getFirstName());
+        assertEquals("Pearle", p.get(2).getFirstName());
+
     }
 }

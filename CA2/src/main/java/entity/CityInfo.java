@@ -19,8 +19,7 @@ public class CityInfo implements Serializable {
     public CityInfo() {
     }
 
-    public CityInfo(Integer id, Integer zip, String city) {
-        this.id = id;
+    public CityInfo(Integer zip, String city) {
         this.zip = zip;
         this.city = city;
     }

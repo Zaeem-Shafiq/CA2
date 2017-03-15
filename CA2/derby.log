@@ -1,21 +1,11 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Wed Mar 15 15:53:39 CET 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015a-d275-c970-00000c181508 
+Wed Mar 15 16:04:29 CET 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015a-d27f-b4c8-00000c0899e0 
 on database directory C:\Users\Asger\Desktop\Datamatiker\CA2\CA2\Users with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
 Loaded from file:/C:/Users/Asger/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_102-b14
 user.dir=C:\Users\Asger\Desktop\Datamatiker\CA2\CA2
-=======
-Wed Mar 15 14:15:39 CET 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015a-d21c-1389-00000a7a2180 
-on database directory C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
-Loaded from file:/C:/Users/Joacim.JVELT/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
-java.vendor=Sun Microsystems Inc.
-java.runtime.version=1.8.0_77-b03
-user.dir=C:\Users\Joacim.JVELT\Desktop\ca2\CA2
->>>>>>> master
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

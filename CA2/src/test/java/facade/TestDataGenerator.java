@@ -26,9 +26,6 @@ public class TestDataGenerator {
 
     public void starter() {
         deleteAll();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(getPhone(i));
-        }
         for (int i = 1; i < 4; i++) {
             createAddress(i);
         }
@@ -169,7 +166,7 @@ public class TestDataGenerator {
     }
 
     public void createAddress(int i) {
-        Address a = new Address(streetAddresses[i] + i, "desc", getCityInfo(i));
+        Address a = new Address(streetAddresses[i] + i, "desc", new CityInfo(2720, "vanløse"));
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
