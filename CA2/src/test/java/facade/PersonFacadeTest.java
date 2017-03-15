@@ -5,6 +5,7 @@
  */
 package facade;
 
+import entity.Person;
 import javax.ejb.Startup;
 import javax.persistence.Persistence;
 import model.DataGenerator;
@@ -17,19 +18,22 @@ import org.junit.Before;
  * @author Asger
  */
 public class PersonFacadeTest {
+    private PersonFacade pf;
     
     public PersonFacadeTest() {
+        pf = new PersonFacade("pu_test");
     }
 
     @Before
     public void startUp(){
         Persistence.generateSchema("pu_test", null);
-        DataGenerator dg = new DataGenerator();
-        dg.starter();
+        TestDataGenerator tdg = new TestDataGenerator("pu_test");
+        tdg.starter();
     }
     
     @Test
-    public void testSomeMethod() {
+    public void testGetPersonById() {
+        assertEquals("Dann", pf.getPersonById(1).getFirstName());
     }
     
 }

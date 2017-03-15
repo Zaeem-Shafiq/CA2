@@ -12,14 +12,18 @@ import javax.persistence.TypedQuery;
 
 public class PersonFacade {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+    private EntityManagerFactory emf;
 
+    public PersonFacade(String persistence) {
+        emf = Persistence.createEntityManagerFactory(persistence);
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
     public static void main(String[] args) {
-        PersonFacade pf = new PersonFacade();
+        PersonFacade pf = new PersonFacade("PU");
 //        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
 //        System.out.println(pf.getPersons().toString());
