@@ -16,12 +16,17 @@ import javax.persistence.RollbackException;
 
 public class DataGenerator {
 
-    Random ran = new Random();
-    public EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+    private Random ran = new Random();
+    private EntityManagerFactory emf;
+    
+    public DataGenerator(String database) {
+        emf = Persistence.createEntityManagerFactory(database);
+    }
+    
+    
 
     public static void main(String[] args) {
-        new DataGenerator().starter();
-
+        new DataGenerator("PU").starter();
     }
 
     public void starter() {
@@ -29,10 +34,6 @@ public class DataGenerator {
             createRandomAddress();
         }
         createHobbies();
-
-        for (int i = 0; i < 50; i++) {
-            createPhoneNumbers();
-        }
 
         for (int i = 0; i < 50; i++) {
             createRandomPerson();
@@ -57,8 +58,8 @@ public class DataGenerator {
 
     public void createRandomCompany() {
         List<Phone> phones = new ArrayList();
-        phones.add(getPhone(ran.nextInt(50) + 1));
         Company company = new Company(companies[ran.nextInt(companies.length)], "A description", 100000 + ran.nextInt(90000000), ran.nextInt(200) + 10, 2000, emails[ran.nextInt(emails.length)], phones, getAddress(ran.nextInt(50) + 1));
+        phones.add(new Phone(company, 100000 + ran.nextInt(90000000) + "", "Mobile"));
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -134,22 +135,6 @@ public class DataGenerator {
             em.close();
         }
         return hobby;
-    }
-
-    public void createPhoneNumbers() {
-        int n = 100000 + ran.nextInt(90000000);
-        Phone phone = new Phone(n + "", "desc");
-        EntityManager em = getManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(phone);
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-            r.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
     }
 
     public void createHobbies() {
