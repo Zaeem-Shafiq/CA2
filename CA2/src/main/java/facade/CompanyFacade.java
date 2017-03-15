@@ -1,12 +1,10 @@
 package facade;
 
 import entity.Company;
-import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
@@ -20,7 +18,9 @@ public class CompanyFacade {
 
     public static void main(String[] args) {
         CompanyFacade cf = new CompanyFacade();
-        System.out.println(cf.getCompanyByCvr(768484).toString());
+//        System.out.println(cf.getCompanyByCvr(768484).toString());
+//        System.out.println(cf.getCompanyByPhoneNumber("78314171").toString());
+//        System.out.println(cf.getCompaniesWithEmployees(154).toString());
     }
     
     public Company getCompanyByCvr(int cvr) {
@@ -41,13 +41,32 @@ public class CompanyFacade {
         return company;
     }
     
-    public List<Person> getPersons() {
+//    public Company getCompanyByPhoneNumber(String phoneNumber) {
+//        EntityManager em = getEntityManager();
+//        Company company = null;
+//        try {
+//            em.getTransaction().begin();
+//            TypedQuery<Company> query = em.createQuery("SELECT c FROM Company c WHERE c.phones.number = :phoneNumber", Company.class);
+//            query.setParameter("phoneNumber", phoneNumber);
+//            company = query.getSingleResult();
+//            em.getTransaction().commit();
+//        } catch (RollbackException r) {
+//            r.printStackTrace();
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        return company;
+//    }
+    
+    public List<Company> getCompaniesWithEmployees(int employees) {
         EntityManager em = getEntityManager();
-        List<Person> persons = null;
+        List<Company> companies = null;
         try {
             em.getTransaction().begin();
-            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
-            persons = query.getResultList();
+            TypedQuery<Company> query = em.createQuery("SELECT c FROM Company c WHERE c.numEmployees > :employees", Company.class);
+            query.setParameter("employees", employees);
+            companies = query.getResultList();
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
@@ -55,8 +74,6 @@ public class CompanyFacade {
         } finally {
             em.close();
         }
-        return persons;
+        return companies;
     }
-    
-
 }
