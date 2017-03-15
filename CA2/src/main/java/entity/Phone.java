@@ -10,15 +10,17 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Phone implements Serializable {
 
-    @ManyToOne
-    private InfoEntity infoEntity;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String number;
     private String description;
+    @ManyToOne
+    private InfoEntity infoEntity;
+
+    public Phone() {
+    }
 
     public Phone(String number, String description) {
         this.number = number;
@@ -31,15 +33,12 @@ public class Phone implements Serializable {
         this.description = description;
     }
 
-    public Phone() {
+    public Integer getId() {
+        return id;
     }
 
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     @Override

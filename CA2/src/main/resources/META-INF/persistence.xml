@@ -18,4 +18,23 @@
       <property name="javax.persistence.sql-load-script-source" value="script/populateZip.sql"/>
     </properties>
   </persistence-unit>
+    <persistence-unit name="pu_test" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>entity.Phone</class>
+        <class>entity.InfoEntity</class>
+        <class>entity.Address</class>
+        <class>entity.CityInfo</class>
+        <class>entity.Hobby</class>
+        <class>entity.Person</class>
+        <class>entity.Company</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:myDB;create=true"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:Users;create=true"/>
+            <property name="eclipselink.logging.level" value="WARNING"/>
+            <property name="eclipselink.canonicalmodel.subpackage" value="test"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+        </properties>
+    </persistence-unit>
 </persistence>

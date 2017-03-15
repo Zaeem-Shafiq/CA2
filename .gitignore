@@ -62,3 +62,4 @@ $RECYCLE.BIN/
 *.war
 *.ear
 /CA2/target/
+/CA2/nbproject/

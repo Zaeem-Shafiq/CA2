@@ -12,9 +12,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Address implements Serializable {
 
-//    @ManyToOne
-//    private InfoEntity infoEntity;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,25 +25,18 @@ public class Address implements Serializable {
 
     public Address() {
     }
-    
- public Address(String street, String additionalInfo, CityInfo cityInfo, List<InfoEntity> infoEntities) {
-        this.street = street;
-        this.additionalInfo = additionalInfo;
-        this.cityInfo = cityInfo;
-        this.infoEntities = infoEntities;
-    }
-//    public Address(InfoEntity infoEntity, String street, String additionalInfo, CityInfo cityInfo, List<InfoEntity> infoEntities) {
-//        this.infoEntity = infoEntity;
-//        this.street = street;
-//        this.additionalInfo = additionalInfo;
-//        this.cityInfo = cityInfo;
-//        this.infoEntities = infoEntities;
-//    }
 
     public Address(String street, String additionalInfo, CityInfo cityInfo) {
         this.street = street;
         this.additionalInfo = additionalInfo;
         this.cityInfo = cityInfo;
+    }
+
+    public Address(String street, String additionalInfo, CityInfo cityInfo, List<InfoEntity> infoEntities) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.cityInfo = cityInfo;
+        this.infoEntities = infoEntities;
     }
 
     public Integer getId() {
