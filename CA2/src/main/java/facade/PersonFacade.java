@@ -2,6 +2,7 @@ package facade;
 
 import entity.CityInfo;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -84,6 +85,23 @@ public class PersonFacade {
         return persons;
     }
 
+    public List<Phone> getPhones() {
+        EntityManager em = getEntityManager();
+        List<Phone> phones = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Phone> query = em.createQuery("SELECT p FROM Phone p", Phone.class);
+            phones = query.getResultList();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return phones;
+    }
+    
     public List<Person> getPersonsByZip(int zipCode) {
         EntityManager em = getEntityManager();
         List<Person> persons = null;
