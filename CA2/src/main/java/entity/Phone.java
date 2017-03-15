@@ -38,8 +38,8 @@ public class Phone implements Serializable {
         return id;
     }
 
-    public void setInfoEntity(InfoEntity infoEntity) {
-        this.infoEntity = infoEntity;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNumber() {
@@ -56,6 +56,14 @@ public class Phone implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public InfoEntity getInfoEntity() {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity) {
+        this.infoEntity = infoEntity;
     }
 
     @Override

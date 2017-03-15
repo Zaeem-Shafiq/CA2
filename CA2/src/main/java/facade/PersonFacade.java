@@ -1,8 +1,11 @@
 package facade;
 
+import entity.Address;
 import entity.CityInfo;
+import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,16 +26,22 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
         //PersonFacade pf = new PersonFacade("PU");
+
+//        PersonFacade pf = new PersonFacade("PU");
 //        System.out.println(pf.getPersonById(1).toString());
+//        System.out.println(pf.getPersonById(1).toString());
+
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
 //        System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByZip(800).toString());
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
-    }
+//    }
+//        System.out.println(pf.getCityInfoByZip(3390));
+//    }
 
     public Person getPersonById(int id) {
         EntityManager em = getEntityManager();
@@ -171,5 +180,48 @@ public class PersonFacade {
             em.close();
         }
         return zipCodes;
+    }
+
+    public CityInfo getCityInfoByZip(int zipCode) {
+        EntityManager em = getEntityManager();
+        CityInfo cityInfo = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<CityInfo> query = em.createQuery("SELECT c FROM CityInfo c WHERE c.zip = :zipCode", CityInfo.class);
+            query.setParameter("zipCode", zipCode);
+            cityInfo = query.getSingleResult();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return cityInfo;
+    }
+
+    public Person createPerson(String firstName, String lastName, String hobbyName, String hobbyDescription,
+            String email, String phoneNumber, String phoneDescription, int zipCode, String street, String additionalAddressInfo) {
+        EntityManager em = getEntityManager();
+        List<Hobby> hobbies = new ArrayList();
+        List<Phone> phones = new ArrayList();
+        CityInfo cityInfo = getCityInfoByZip(zipCode);
+        Address address = new Address(street, additionalAddressInfo, cityInfo);
+ 
+        hobbies.add(new Hobby(hobbyName, hobbyDescription));
+        phones.add(new Phone(phoneNumber, phoneDescription));
+        
+        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
+        try {
+            em.getTransaction().begin();
+            em.persist(person);
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return person;
     }
 }
