@@ -60,6 +60,12 @@ public class PersonFacadeTest {
         assertEquals("Andy", p.get(0).getFirstName());
         assertEquals("Taunya", p.get(1).getFirstName());
         assertEquals("Pearle", p.get(2).getFirstName());
-
+    }
+    
+    @Test
+    public void testGetPersonByHobby() {
+        List<Person> p = pf.getPersonsByHobby("football");
+        assertEquals(1, p.size());
+        assertEquals("Andy", p.get(0).getFirstName());
     }
 }
