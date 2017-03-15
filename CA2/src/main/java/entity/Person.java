@@ -46,10 +46,9 @@ public class Person extends InfoEntity {
         this.hobbies = hobbies;
     }
 
-    
     @Override
     public String toString() {
         return "Person{" + "firstName=" + firstName + ", lastName=" + lastName + ", hobbies=" + hobbies + '}';
     }
-    
+
 }
