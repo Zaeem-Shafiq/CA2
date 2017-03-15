@@ -26,7 +26,7 @@ public class PersonFacade {
 //        System.out.println(pf.getPersonByPhoneNumber("9158773").toString());
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
-        System.out.println(pf.getZipCodesInDk());
+//        System.out.println(pf.getZipCodesInDk());
     }
     
     public Person getPersonById(int id) {
@@ -120,7 +120,7 @@ public class PersonFacade {
 //        int count = 0;
 //        try {
 //            em.getTransaction().begin();
-//            Query query = em.createQuery("SELECT COUNT(p) FROM Person p WHERE p.hobbies.name = :hobby", Person.class);
+//            Query query = em.createQuery("SELECT COUNT(p) FROM Person p WHERE p.hobbies.name = :hobby");
 //            query.setParameter("hobby", hobby);
 //            count = Integer.parseInt(query.getSingleResult().toString());            
 //            em.getTransaction().commit();

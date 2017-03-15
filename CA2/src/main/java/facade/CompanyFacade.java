@@ -1,10 +1,12 @@
 package facade;
 
+import entity.Company;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
@@ -18,16 +20,17 @@ public class CompanyFacade {
 
     public static void main(String[] args) {
         CompanyFacade cf = new CompanyFacade();
-        System.out.println(cf.getPerson(1).toString());
-        System.out.println(cf.getPersons().toString());
+        System.out.println(cf.getCompanyByCvr(768484).toString());
     }
     
-    public Person getPerson(int id) {
+    public Company getCompanyByCvr(int cvr) {
         EntityManager em = getEntityManager();
-        Person person = null;
+        Company company = null;
         try {
             em.getTransaction().begin();
-            person = em.find(Person.class, id);
+            TypedQuery<Company> query = em.createQuery("SELECT c FROM Company c WHERE c.cvr = :cvr", Company.class);
+            query.setParameter("cvr", cvr);
+            company = query.getSingleResult();
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
@@ -35,7 +38,7 @@ public class CompanyFacade {
         } finally {
             em.close();
         }
-        return person;
+        return company;
     }
     
     public List<Person> getPersons() {

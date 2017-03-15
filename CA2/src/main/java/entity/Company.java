@@ -23,5 +23,9 @@ public class Company extends InfoEntity {
         this.numEmployees = numEmployees;
         this.marketValue = marketValue;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Company{" + "name=" + name + ", description=" + description + ", cvr=" + cvr + ", numEmployees=" + numEmployees + ", marketValue=" + marketValue + '}';
+    }
 }
