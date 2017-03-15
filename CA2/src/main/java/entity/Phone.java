@@ -37,6 +37,30 @@ public class Phone implements Serializable {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public InfoEntity getInfoEntity() {
+        return infoEntity;
+    }
+
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
     }
