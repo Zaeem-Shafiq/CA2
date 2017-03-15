@@ -22,11 +22,11 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
         //PersonFacade pf = new PersonFacade("PU");
 
-        PersonFacade pf = new PersonFacade("PU");
-        System.out.println(pf.getPersonById(1).toString());
+//        PersonFacade pf = new PersonFacade("PU");
+//        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonById(1).toString());
 
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
@@ -35,7 +35,7 @@ public class PersonFacade {
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
-    }
+//    }
 
     public Person getPersonById(int id) {
         EntityManager em = getEntityManager();

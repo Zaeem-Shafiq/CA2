@@ -5,6 +5,13 @@
  */
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import entity.Person;
+import facade.CompanyFacade;
+import facade.PersonFacade;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -22,6 +29,8 @@ import javax.ws.rs.core.MediaType;
 @Path("Person")
 public class PersonResource {
 
+    Gson gson = new Gson();
+    
     @Context
     private UriInfo context;
 
@@ -37,8 +46,18 @@ public class PersonResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getXml() {
-        return "HEY";
+    public String getAllPersons() {
+        List<Person> persons = new PersonFacade("PU").getPersons();
+        JsonArray names = new JsonArray();
+        for (int i = 0; i < persons.size(); i++) {        
+            JsonObject person = new JsonObject();
+                person.addProperty("fName", persons.get(i).getFirstName());
+                person.addProperty("lName", persons.get(i).getLastName());
+                person.addProperty("street", persons.get(i).getHobbies().get(0).toString());
+//                person.addProperty("city", city[ran.nextInt(50)]);
+            names.add(person);
+        }
+        return gson.toJson(names);
     }
 
     /**
