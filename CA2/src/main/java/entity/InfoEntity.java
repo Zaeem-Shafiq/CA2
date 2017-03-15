@@ -21,9 +21,9 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
-    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.ALL)
     private List<Phone> phones;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public InfoEntity() {

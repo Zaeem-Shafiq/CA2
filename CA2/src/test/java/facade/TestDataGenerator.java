@@ -12,32 +12,26 @@ import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.RollbackException;
 import model.DataGenerator;
 
 public class TestDataGenerator {
 
-    private Random ran = new Random();
     private EntityManagerFactory emf;
     
     public TestDataGenerator(String database) {
         emf = Persistence.createEntityManagerFactory(database);
     }
-    
-    public static void main(String[] args) {
-        new DataGenerator("pu_test").starter();
-    }
 
     public void starter() {
+        deleteAll();
         for (int i = 1; i < 4; i++) {
             createAddress(i);
-            System.out.println(getAddress(i));
         }
         createHobbies();
         for (int i = 1; i < 4; i++) {
             createPerson(i);
-            System.out.println(getHobby(i).toString());
-
         }
         for (int i = 1; i < 4; i++) {
             createCompany(i);
@@ -58,7 +52,7 @@ public class TestDataGenerator {
     public void createCompany(int i) {
         List<Phone> phones = new ArrayList();
         Company company = new Company(companies[i], "A description", 12345670+i, i + 10, 2000, emails[i], phones, getAddress(i));
-        phones.add(new Phone(company, 12345670+i + "", "Mobile"));
+        phones.add(new Phone(company, 12345680+i + "", "Mobile"));
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -77,7 +71,7 @@ public class TestDataGenerator {
         hobbies.add(getHobby(i));
         List<Phone> phones = new ArrayList();
         Person person = new Person(firstNames[i], lastNames[i], hobbies, emails[i], phones, getAddress(i));
-        phones.add(new Phone(person, 123456780+i + "", "Mobile"));
+        phones.add(new Phone(person, 12345670+i + "", "Mobile"));
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -172,7 +166,7 @@ public class TestDataGenerator {
     }
 
     public void createAddress(int i) {
-        Address a = new Address(streetAddresses[i] + i, "desc", getCityInfo(i));
+        Address a = new Address(streetAddresses[i] + i, "desc", new CityInfo(2720, "vanløse"));
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -186,6 +180,21 @@ public class TestDataGenerator {
         }
     }
 
+    public void deleteAll(){
+        EntityManager em = getManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM Phone i").executeUpdate();
+            em.createQuery("DELETE FROM InfoEntity i").executeUpdate();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
     private EntityManager getManager() {
         return emf.createEntityManager();
     }

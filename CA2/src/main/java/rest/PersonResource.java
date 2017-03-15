@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import entity.Hobby;
 import entity.Person;
-import facade.CompanyFacade;
 import facade.PersonFacade;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -28,8 +24,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("Person")
 public class PersonResource {
-
-    Gson gson = new Gson();
+    
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     
     @Context
     private UriInfo context;
@@ -42,26 +38,39 @@ public class PersonResource {
 
     /**
      * Retrieves representation of an instance of rest.PersonResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() {
         List<Person> persons = new PersonFacade("PU").getPersons();
-        JsonArray names = new JsonArray();
-        for (int i = 0; i < persons.size(); i++) {        
-            JsonObject person = new JsonObject();
-                person.addProperty("fName", persons.get(i).getFirstName());
-                person.addProperty("lName", persons.get(i).getLastName());
-                person.addProperty("street", persons.get(i).getHobbies().get(0).toString());
-//                person.addProperty("city", city[ran.nextInt(50)]);
-            names.add(person);
-        }
-        return gson.toJson(names);
+        
+    jsonMappers.Person person = new jsonMappers.Person(persons.get(0));
+        return gson.toJson(person);
+        
+//        JsonArray names = new JsonArray();
+//        for (int i = 0; i < persons.size(); i++) { 
+//            List<Hobby> hobbies = persons.get(i).getHobbies();
+//            JsonArray hobbyList = new JsonArray();
+//            for (int j = 0; j < hobbies.size(); j++) {
+//                JsonObject hobbyObject = new JsonObject();
+//                hobbyObject.addProperty("description", hobbies.get(j).getDescription());
+//                hobbyObject.addProperty("name", hobbies.get(j).getName());
+//                hobbyList.add(hobbyObject);
+//            }           
+//            JsonObject person = new JsonObject();
+//            person.addProperty("fName", persons.get(i).getFirstName());
+//            person.addProperty("lName", persons.get(i).getLastName());  
+//            person.addProperty("hobbies",gson.toJson(hobbyList));            
+//            names.add(person);
+//        }
+//        return gson.toJson(names);
     }
 
     /**
      * PUT method for updating or creating an instance of PersonResource
+     *
      * @param content representation for the resource
      */
     @PUT
