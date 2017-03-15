@@ -21,9 +21,9 @@ public class PersonFacade {
     public static void main(String[] args) {
         PersonFacade pf = new PersonFacade();
 //        System.out.println(pf.getPersonById(1).toString());
-//        System.out.println(pf.getPersons().toString());
+//        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
 //        System.out.println(pf.getPersonsByZip(800).toString());
-//        System.out.println(pf.getPersonByPhoneNumber("9158773").toString());
+//        System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
@@ -45,22 +45,23 @@ public class PersonFacade {
         return person;
     }
     
-//    public Person getPersonByPhoneNumber(String phoneNumber) {
-//        EntityManager em = getEntityManager();
-//        Person person = null;
-//        try {
-//            em.getTransaction().begin();
-//            Query query = em.createQuery("SELECT p FROM Person p WHERE p.phones = :phoneNumber", Person.class);
-//            query.setParameter("phoneNumber", phoneNumber);
-//            em.getTransaction().commit();
-//        } catch (RollbackException r) {
-//            r.printStackTrace();
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return person;
-//    }
+    public Person getPersonByPhoneNumber(String phoneNumber) {
+        EntityManager em = getEntityManager();
+        Person person = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.phones ph WHERE ph.number = :phoneNumber", Person.class);
+            query.setParameter("phoneNumber", phoneNumber);
+            person = query.getSingleResult();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return person;
+    }
     
     public List<Person> getPersons() {
         EntityManager em = getEntityManager();
@@ -115,23 +116,23 @@ public class PersonFacade {
 //        return persons;
 //    }
     
-//    public int getCountOfPersonsWithHobby(String hobby) {
-//        EntityManager em = getEntityManager();
-//        int count = 0;
-//        try {
-//            em.getTransaction().begin();
-//            Query query = em.createQuery("SELECT COUNT(p) FROM Person p WHERE p.hobbies.name = :hobby");
-//            query.setParameter("hobby", hobby);
-//            count = Integer.parseInt(query.getSingleResult().toString());            
-//            em.getTransaction().commit();
-//        } catch (RollbackException r) {
-//            r.printStackTrace();
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return count;
-//    }
+    public int getCountOfPersonsWithHobby(String hobby) {
+        EntityManager em = getEntityManager();
+        int count = 0;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT COUNT(p) FROM Person p JOIN p.hobbies h WHERE h.name = :hobby");
+            query.setParameter("hobby", hobby);
+            count = Integer.parseInt(query.getSingleResult().toString());            
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return count;
+    }
     
     public List<CityInfo> getZipCodesInDk() {
         EntityManager em = getEntityManager();
