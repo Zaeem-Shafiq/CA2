@@ -33,13 +33,10 @@ public class Hobby implements Serializable {
         this.description = description;
         this.persons = persons;
     }
-
-    
     
     public Integer getId() {
         return id;
     }
-
  
     public void setId(Integer id) {
         this.id = id;
@@ -73,6 +70,5 @@ public class Hobby implements Serializable {
     public String toString() {
         return "Hobby{" + "id=" + id + ", name=" + name + ", description=" + description + ", persons=" + persons + '}';
     }
-
 
 }

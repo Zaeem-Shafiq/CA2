@@ -26,22 +26,19 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-//    public static void main(String[] args) {
-        //PersonFacade pf = new PersonFacade("PU");
+    public static void main(String[] args) {
+        PersonFacade pf = new PersonFacade("PU");
 
-//        PersonFacade pf = new PersonFacade("PU");
 //        System.out.println(pf.getPersonById(1).toString());
-//        System.out.println(pf.getPersonById(1).toString());
-
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
 //        System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByZip(800).toString());
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
-//    }
 //        System.out.println(pf.getCityInfoByZip(3390));
-//    }
+        System.out.println(pf.createPerson("Tom", "Tomsen", "Sleeping", "Snoring", "myMail@gmail.com", "43434686", "Mobile", 2620, "Hedemarksvej 60, 2. th", "No info"));
+    }
 
     public Person getPersonById(int id) {
         EntityManager em = getEntityManager();
