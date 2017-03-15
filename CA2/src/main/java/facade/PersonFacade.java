@@ -1,5 +1,6 @@
 package facade;
 
+import entity.CityInfo;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -23,7 +24,9 @@ public class PersonFacade {
 //        System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByZip(800).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("9158773").toString());
-        System.out.println(pf.getPersonsByHobby("relax").toString());
+//        System.out.println(pf.getPersonsByHobby("football").toString());
+//        System.out.println(pf.getCountOfPersonsWithHobby("football"));
+        System.out.println(pf.getZipCodesInDk());
     }
     
     public Person getPersonById(int id) {
@@ -94,14 +97,49 @@ public class PersonFacade {
         return persons;
     }
     
-    public List<Person> getPersonsByHobby(String hobby) {
+//    public List<Person> getPersonsByHobby(String hobby) {
+//        EntityManager em = getEntityManager();
+//        List<Person> persons = null;
+//        try {
+//            em.getTransaction().begin();
+//            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.hobbies.name = :hobby", Person.class);
+//            query.setParameter("hobby", hobby);
+//            persons = query.getResultList();
+//            em.getTransaction().commit();
+//        } catch (RollbackException r) {
+//            r.printStackTrace();
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        return persons;
+//    }
+    
+//    public int getCountOfPersonsWithHobby(String hobby) {
+//        EntityManager em = getEntityManager();
+//        int count = 0;
+//        try {
+//            em.getTransaction().begin();
+//            Query query = em.createQuery("SELECT COUNT(p) FROM Person p WHERE p.hobbies.name = :hobby", Person.class);
+//            query.setParameter("hobby", hobby);
+//            count = Integer.parseInt(query.getSingleResult().toString());            
+//            em.getTransaction().commit();
+//        } catch (RollbackException r) {
+//            r.printStackTrace();
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        return count;
+//    }
+    
+    public List<CityInfo> getZipCodesInDk() {
         EntityManager em = getEntityManager();
-        List<Person> persons = null;
+        List<CityInfo> zipCodes = null;
         try {
             em.getTransaction().begin();
-            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.hobbies.name = :hobby", Person.class);
-            query.setParameter("hobby", hobby);
-            persons = query.getResultList();
+            TypedQuery<CityInfo> query = em.createQuery("SELECT c.zip FROM CityInfo c WHERE c.id < 1190", CityInfo.class);
+            zipCodes = query.getResultList();
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
@@ -109,7 +147,6 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-        return persons;
+        return zipCodes;
     }
-    
 }

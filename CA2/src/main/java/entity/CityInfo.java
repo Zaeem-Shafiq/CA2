@@ -28,6 +28,10 @@ public class CityInfo implements Serializable {
         this.zip = zip;
         this.city = city;
     }
-    
+
+    @Override
+    public String toString() {
+        return "CityInfo{" + "id=" + id + ", zip=" + zip + ", city=" + city + '}';
+    }
     
 }
