@@ -13,10 +13,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
-/**
- *
- * @author Asger
- */
 public class PersonFacadeTest {
     private PersonFacade pf;
     
@@ -33,7 +29,12 @@ public class PersonFacadeTest {
     
     @Test
     public void testGetPersonById() {
-        assertEquals("Dann", pf.getPersonById(1).getFirstName());
+        assertEquals("Andy", pf.getPersonById(1).getFirstName());
+    }
+    
+    @Test
+    public void testGetPersonByPhone(){
+        //assertEquals("Andy", pf.getPersonByPhoneNumber("12345671").getFirstName());
     }
     
 }

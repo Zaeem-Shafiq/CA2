@@ -29,16 +29,17 @@ public class TestDataGenerator {
     }
 
     public void starter() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 4; i++) {
             createAddress(i);
+            System.out.println(getAddress(i));
         }
         createHobbies();
-
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 4; i++) {
             createPerson(i);
+            System.out.println(getHobby(i).toString());
 
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 4; i++) {
             createCompany(i);
         }
     }

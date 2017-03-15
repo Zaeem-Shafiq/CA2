@@ -23,7 +23,7 @@ public class PersonFacade {
     }
 
     public static void main(String[] args) {
-        PersonFacade pf = new PersonFacade("PU");
+        //PersonFacade pf = new PersonFacade("PU");
 //        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
 //        System.out.println(pf.getPersons().toString());
