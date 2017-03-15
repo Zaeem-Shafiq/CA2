@@ -17,7 +17,7 @@ import javax.persistence.RollbackException;
 public class DataGenerator {
 
     Random ran = new Random();
-     public EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+    public EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
     public static void main(String[] args) {
         new DataGenerator().starter();

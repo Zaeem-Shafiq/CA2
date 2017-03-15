@@ -11,7 +11,7 @@ import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 public class PersonFacade {
-    
+
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
 
     public EntityManager getEntityManager() {
@@ -22,13 +22,13 @@ public class PersonFacade {
         PersonFacade pf = new PersonFacade();
 //        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("89851654").toString());
-//        System.out.println(pf.getPersonsByZip(800).toString());
 //        System.out.println(pf.getPersons().toString());
+//        System.out.println(pf.getPersonsByZip(800).toString());
 //        System.out.println(pf.getPersonsByHobby("football").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
     }
-    
+
     public Person getPersonById(int id) {
         EntityManager em = getEntityManager();
         Person person = null;
@@ -44,7 +44,7 @@ public class PersonFacade {
         }
         return person;
     }
-    
+
     public Person getPersonByPhoneNumber(String phoneNumber) {
         EntityManager em = getEntityManager();
         Person person = null;
@@ -62,7 +62,7 @@ public class PersonFacade {
         }
         return person;
     }
-    
+
     public List<Person> getPersons() {
         EntityManager em = getEntityManager();
         List<Person> persons = null;
@@ -79,7 +79,7 @@ public class PersonFacade {
         }
         return persons;
     }
-    
+
     public List<Person> getPersonsByZip(int zipCode) {
         EntityManager em = getEntityManager();
         List<Person> persons = null;
@@ -97,25 +97,25 @@ public class PersonFacade {
         }
         return persons;
     }
-    
-//    public List<Person> getPersonsByHobby(String hobby) {
-//        EntityManager em = getEntityManager();
-//        List<Person> persons = null;
-//        try {
-//            em.getTransaction().begin();
-//            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p WHERE p.hobbies.name = :hobby", Person.class);
-//            query.setParameter("hobby", hobby);
-//            persons = query.getResultList();
-//            em.getTransaction().commit();
-//        } catch (RollbackException r) {
-//            r.printStackTrace();
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return persons;
-//    }
-    
+
+    public List<Person> getPersonsByHobby(String hobby) {
+        EntityManager em = getEntityManager();
+        List<Person> persons = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.hobbies h WHERE h.name = :hobby", Person.class);
+            query.setParameter("hobby", hobby);
+            persons = query.getResultList();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return persons;
+    }
+
     public int getCountOfPersonsWithHobby(String hobby) {
         EntityManager em = getEntityManager();
         int count = 0;
@@ -123,7 +123,7 @@ public class PersonFacade {
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT COUNT(p) FROM Person p JOIN p.hobbies h WHERE h.name = :hobby");
             query.setParameter("hobby", hobby);
-            count = Integer.parseInt(query.getSingleResult().toString());            
+            count = Integer.parseInt(query.getSingleResult().toString());
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
@@ -133,7 +133,7 @@ public class PersonFacade {
         }
         return count;
     }
-    
+
     public List<CityInfo> getZipCodesInDk() {
         EntityManager em = getEntityManager();
         List<CityInfo> zipCodes = null;

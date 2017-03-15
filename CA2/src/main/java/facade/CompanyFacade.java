@@ -22,7 +22,7 @@ public class CompanyFacade {
 //        System.out.println(cf.getCompanyByPhoneNumber("78314171").toString());
 //        System.out.println(cf.getCompaniesWithEmployees(154).toString());
     }
-    
+
     public Company getCompanyByCvr(int cvr) {
         EntityManager em = getEntityManager();
         Company company = null;
@@ -40,25 +40,25 @@ public class CompanyFacade {
         }
         return company;
     }
-    
-//    public Company getCompanyByPhoneNumber(String phoneNumber) {
-//        EntityManager em = getEntityManager();
-//        Company company = null;
-//        try {
-//            em.getTransaction().begin();
-//            TypedQuery<Company> query = em.createQuery("SELECT c FROM Company c WHERE c.phones.number = :phoneNumber", Company.class);
-//            query.setParameter("phoneNumber", phoneNumber);
-//            company = query.getSingleResult();
-//            em.getTransaction().commit();
-//        } catch (RollbackException r) {
-//            r.printStackTrace();
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return company;
-//    }
-    
+
+    public Company getCompanyByPhoneNumber(String phoneNumber) {
+        EntityManager em = getEntityManager();
+        Company company = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Company> query = em.createQuery("SELECT c FROM Company c JOIN c.phones p WHERE p.number = :phoneNumber", Company.class);
+            query.setParameter("phoneNumber", phoneNumber);
+            company = query.getSingleResult();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return company;
+    }
+
     public List<Company> getCompaniesWithEmployees(int employees) {
         EntityManager em = getEntityManager();
         List<Company> companies = null;
