@@ -94,4 +94,5 @@ public class PersonResource {
         new PersonFacade("PU").createPerson(p);
         return gson.toJson(p);
     }
+
 }
