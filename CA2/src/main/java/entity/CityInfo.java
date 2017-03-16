@@ -19,26 +19,18 @@ public class CityInfo implements Serializable {
         this.zip = zip;
         this.city = city;
     }
-    
+
     public Integer getZip() {
         return zip;
-    }
-
-    public void setZip(Integer zip) {
-        this.zip = zip;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     @Override
     public String toString() {
-        return "CityInfo{" + ", zip=" + zip + ", city=" + city + '}';
+        return "CityInfo{" + "zip=" + zip + ", city=" + city + '}';
     }
 
 }

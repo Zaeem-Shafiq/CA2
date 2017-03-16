@@ -23,11 +23,6 @@ public class Phone implements Serializable {
     public Phone() {
     }
 
-    public Phone(String number, String description) {
-        this.number = number;
-        this.description = description;
-    }
-
     public Phone(InfoEntity infoEntity, String number, String description) {
         this.infoEntity = infoEntity;
         this.number = number;
@@ -36,10 +31,6 @@ public class Phone implements Serializable {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNumber() {

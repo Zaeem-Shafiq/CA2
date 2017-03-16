@@ -46,7 +46,7 @@ public class DataGenerator {
         }
     }
 
-    public void createRandomCompany() {       
+    public void createRandomCompany() {
         List<Phone> phones = new ArrayList();
         Company company = new Company(companies[ran.nextInt(companies.length)], "A description", 100000 + ran.nextInt(90000000), ran.nextInt(200) + 10, 2000, emails[ran.nextInt(emails.length)], phones, createRandomAddress());
         phones.add(new Phone(company, 100000 + ran.nextInt(90000000) + "", "Mobile"));
@@ -62,7 +62,7 @@ public class DataGenerator {
         }
     }
 
-    public void createRandomPerson() {        
+    public void createRandomPerson() {
         List<Phone> phones = new ArrayList();
         Person person = new Person(firstNames[ran.nextInt(firstNames.length)], lastNames[ran.nextInt(lastNames.length)], createHobbies(), emails[ran.nextInt(emails.length)], phones, createRandomAddress());
         phones.add(new Phone(person, 100000 + ran.nextInt(90000000) + "", "Mobile"));
@@ -76,7 +76,7 @@ public class DataGenerator {
         } finally {
             em.close();
         }
-    }   
+    }
 
     public List<Hobby> createHobbies() {
         List<Hobby> hobbies = new ArrayList();

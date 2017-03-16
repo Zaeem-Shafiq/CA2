@@ -39,10 +39,15 @@ public class PersonFacade {
 //        System.out.println(pf.getCityInfoByZip(3390));
         List<Hobby> hobbies = new ArrayList();
         List<Phone> phones = new ArrayList();
+        CityInfo cityInfo = pf.getCityInfoByZip(2600);
+        Address address = new Address("Hejvej 12", "nothing", cityInfo);
+        Person person = new Person("Ole", "Petersen", hobbies, "hej@gmail.com", phones, address);
         hobbies.add(new Hobby("Football", "Score goals"));
-        phones.add(new Phone("99999999", "no des"));
+        phones.add(new Phone(person, "99999999", "no des"));
+        person.setId(35);
 //        System.out.println(pf.createPerson("Peter", "Klausen", hobbies, "hej@hotmail.com", phones, 2500, "En vej 212", "nothing"));
-        System.out.println(pf.updatePerson(30, "Lars", "Tomsen", hobbies, "Mail@gmail.com", phones, 2635, "Gedemarksvej 60, 2. th", "Hello"));
+//        System.out.println(pf.updatePerson(1, "Lars", "Tomsen", hobbies, "Mail@gmail.com", phones, 2635, "Gedemarksvej 60, 2. th", "Hello"));
+        System.out.println(pf.updatePerson(person));
     }
 
     public Person getPersonById(int id) {
@@ -265,6 +270,28 @@ public class PersonFacade {
             em.close();
         }
         return person;
+    }
+    
+    public Person updatePerson(Person person) {
+        EntityManager em = getEntityManager();
+        Person personToBeUpdated = null;
+        try {
+            em.getTransaction().begin();
+            personToBeUpdated = em.find(Person.class, person.getId());
+            personToBeUpdated.setFirstName(person.getFirstName());
+            personToBeUpdated.setLastName(person.getLastName());
+            personToBeUpdated.setHobbies(person.getHobbies());
+            personToBeUpdated.setEmail(person.getEmail());
+            personToBeUpdated.setPhones(person.getPhones());
+            personToBeUpdated.setAddress(person.getAddress());
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return personToBeUpdated;
     }
     
     public Person deletePerson(int id) {
