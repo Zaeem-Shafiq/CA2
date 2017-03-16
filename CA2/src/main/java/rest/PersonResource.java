@@ -2,10 +2,8 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import entity.Person;
+import entity.Phone;
 import facade.PersonFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import jsonMappers.PersonContact;
@@ -89,12 +86,16 @@ public class PersonResource {
      * @param content representation for the resource
      * @return json
      */
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String postData(String content) {
-//        Person p = gson.fromJson(content, Person.class);
-//        new PersonFacade("PU").createPerson(p.getFirstName(), p.getLastName(), p.getHobbies(), p.getEmail(),p.getPhones() ,p.getAddress().getCityInfo().getZip(), p.getAddress().getStreet(), p.getAddress().getAdditionalInfo());
-//        return gson.toJson(p);
-//    }
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String postData(String content) {
+        Person person = gson.fromJson(content, Person.class);
+        for (Phone phone : person.getPhones()) {
+            phone.setInfoEntity(person);
+        }
+        new PersonFacade("PU").createPerson(person);
+        return gson.toJson(person);
+    }
+
 }

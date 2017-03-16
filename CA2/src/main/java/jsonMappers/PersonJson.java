@@ -13,7 +13,7 @@ public class PersonJson {
 
     public int id;
     public String firstName, lastName, email;
-    public AddressJson adress;
+    public AddressJson address;
     public List<HobbyJson> hobbies = new ArrayList();
     public List<PhoneJson> phones = new ArrayList();
     public CityInfoJson cityInfo;
@@ -24,7 +24,8 @@ public class PersonJson {
         this.lastName = person.getLastName();
         this.email = person.getEmail();
         this.cityInfo = new jsonMappers.CityInfoJson(person.getAddress().getCityInfo());
-        this.adress = new jsonMappers.AddressJson(person.getAddress());
+        this.address = new jsonMappers.AddressJson(person.getAddress());
+        
         for (Phone phone : person.getPhones()) {
             phones.add(new jsonMappers.PhoneJson(phone));
 
