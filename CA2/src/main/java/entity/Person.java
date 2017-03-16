@@ -22,6 +22,8 @@ public class Person extends InfoEntity {
         this.lastName = lastName;
         this.hobbies = hobbies;
     }
+    
+    
 
     public String getFirstName() {
         return firstName;
@@ -46,6 +48,8 @@ public class Person extends InfoEntity {
     public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
     }
+    
+    
 
     @Override
     public String toString() {

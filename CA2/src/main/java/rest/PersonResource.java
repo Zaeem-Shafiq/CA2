@@ -3,10 +3,11 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import entity.Hobby;
 import entity.Person;
 import facade.PersonFacade;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -15,7 +16,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import jsonMappers.PersonContact;
+import jsonMappers.PersonJson;
 
 /**
  * REST Web Service
@@ -24,9 +28,9 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("Person")
 public class PersonResource {
-    
+
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    
+
     @Context
     private UriInfo context;
 
@@ -44,9 +48,38 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() {
-        List<Person> persons = new PersonFacade("PU").getPersons();        
-        jsonMappers.PersonJson person = new jsonMappers.PersonJson(persons.get(0));
-        return gson.toJson(person);
+        List<Person> persons = new PersonFacade("PU").getPersons();
+        List<PersonJson> personsJson = new ArrayList();
+        for (Person person : persons) {
+            personsJson.add(new PersonJson(person));
+        }
+        return gson.toJson(personsJson);
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonById(@PathParam("id") int id) {
+        return gson.toJson(new PersonJson(new PersonFacade("PU").getPersonById(id)));
+    }
+
+    @GET
+    @Path("contactinfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllPersonsContactInfo() {
+        List<Person> persons = new PersonFacade("PU").getPersons();
+        List<PersonContact> personsJson = new ArrayList();
+        for (Person person : persons) {
+            personsJson.add(new PersonContact(person));
+        }
+        return gson.toJson(personsJson);
+    }
+    
+    @GET
+    @Path("contactinfo/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonContactInfoId(@PathParam("id")int id) {        
+        return gson.toJson(new PersonContact(new PersonFacade("PU").getPersonById(id)));
     }
 
     /**
