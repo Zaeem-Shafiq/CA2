@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Person;
+import entity.Phone;
 import facade.PersonFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,9 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String postData(String content) {
         Person p = gson.fromJson(content, Person.class);
-        System.out.println("");
+        for (Phone phone : p.getPhones()) {
+            phone.setInfoEntity(p);
+        }
         new PersonFacade("PU").createPerson(p);
         return gson.toJson(p);
     }
