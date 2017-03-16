@@ -19,8 +19,7 @@ public class DataGenerator {
     private Random ran = new Random();
     private EntityManagerFactory emf;
     
-    public DataGenerator(String database) {
-        
+    public DataGenerator(String database) {        
         emf = Persistence.createEntityManagerFactory(database);
     }
     
@@ -28,22 +27,15 @@ public class DataGenerator {
 
     public static void main(String[] args) {
         new DataGenerator("PU").starter();
+        
     }
 
-    public void starter() {
-        for (int i = 0; i < 50; i++) {
-            createRandomAddress();
-        }
+    public void starter() {        
         createHobbies();
-
         for (int i = 0; i < 50; i++) {
             createRandomPerson();
-
-        }
-        for (int i = 0; i < 50; i++) {
             createRandomCompany();
         }
-        createRandomPerson();
     }
 
     private String streetAddress = "553 Hill Field Drive , Bensalem, PA 19020, 357 Foxrun Ave. , New Rochelle, NY 10801, 350 Leeton Ridge Street , Hummelstown, PA 17036, 30 Courtland Street , New City, NY 10956, 92 Hill Road , Elk River, MN 55330, 9621 Briarwood St. , Helena, MT 59601, 9284 Strawberry St. , Park Forest, IL 60466, 597 North Brook St. , Redondo Beach, CA 90278, 8088 Clark Court , Lake Jackson, TX 77566, 7906 Indian Spring St. , Hartsville, SC 29550, 30 Ketch Harbour St. , Levittown, NY 11756, 47 Bellevue Lane , Maumee, OH 43537, 968 Windfall Drive , Jupiter, FL 33458, 404 NW. Pacific Street , Akron, OH 44312, 7518 SE. Stillwater Drive , Billings, MT 59101, 9353 Overlook St. , Staten Island, NY 10301, 4 North Catherine Rd. , Brookline, MA 02446, 7507 East Roberts St. , East Hartford, CT 06118, 861 Marsh Dr. , Leland, NC 28451, 283 East Shirley St. , Jamaica Plain, MA 02130, 98 Elmwood Dr. , Linden, NJ 07036, 8470 Division St. , Harrisburg, PA 17109, 263 Golf Circle , Northville, MI 48167, 7079 Sheffield Rd. , Pickerington, OH 43147, 28 Overlook Street , La Porte, IN 46350, 42 Highland Street , Maplewood, NJ 07040, 558 Cambridge Dr. , Marlton, NJ 08053, 280 East St. , Traverse City, MI 49684, 230 George Rd. , Dacula, GA 30019, 531 Sussex Court , Mebane, NC 27302, 25 Pierce St. , Campbell, CA 95008, 70 Warren Court , Bay City, MI 48706, 2 South High St. , Reidsville, NC 27320, 8795 4th St. , Morgantown, WV 26508, 548 E. High Ridge Avenue , Muskego, WI 53150, 9 Princeton Ave. , Bountiful, UT 84010, 1 Gartner St. , Appleton, WI 54911, 35 Bay St. , Winter Haven, FL 33880, 7 N. Smith Store Street , Maryville, TN 37803, 8967B Constitution Ave. , Sioux City, IA 51106, 9248 Vermont Street , Hackensack, NJ 07601, 7137 Peg Shop St. , Westbury, NY 11590, 646 Alton Street , Howell, NJ 07731, 67 N. Williams St. , Morrisville, PA 19067, 9010 Selby Ave. , Rosedale, NY 11422, 81 South Penn Ave. , Addison, IL 60101, 677 College Rd. , Brunswick, GA 31525, 256 West Division Lane , Summerville, SC 29483, 326 Central St. , Anderson, SC 29621, 782 Pierce St. , Fort Lauderdale, FL 33308";
@@ -59,7 +51,7 @@ public class DataGenerator {
 
     public void createRandomCompany() {
         List<Phone> phones = new ArrayList();
-        Company company = new Company(companies[ran.nextInt(companies.length)], "A description", 100000 + ran.nextInt(90000000), ran.nextInt(200) + 10, 2000, emails[ran.nextInt(emails.length)], phones, getAddress(ran.nextInt(50) + 1));
+        Company company = new Company(companies[ran.nextInt(companies.length)], "A description", 100000 + ran.nextInt(90000000), ran.nextInt(200) + 10, 2000, emails[ran.nextInt(emails.length)], phones, createRandomAddress());
         phones.add(new Phone(company, 100000 + ran.nextInt(90000000) + "", "Mobile"));
         EntityManager em = getManager();
         try {
@@ -78,7 +70,7 @@ public class DataGenerator {
         List<Hobby> hobbies = new ArrayList();
         hobbies.add(getHobby(ran.nextInt(2) + 1));
         List<Phone> phones = new ArrayList();
-        Person person = new Person(firstNames[ran.nextInt(firstNames.length)], lastNames[ran.nextInt(lastNames.length)], hobbies, emails[ran.nextInt(emails.length)], phones, getAddress(ran.nextInt(50) + 1));
+        Person person = new Person(firstNames[ran.nextInt(firstNames.length)], lastNames[ran.nextInt(lastNames.length)], hobbies, emails[ran.nextInt(emails.length)], phones, createRandomAddress());
         phones.add(new Phone(person, 100000 + ran.nextInt(90000000) + "", "Mobile"));
         EntityManager em = getManager();
         try {
@@ -151,7 +143,6 @@ public class DataGenerator {
             em.persist(hobbies.get(2));
             em.getTransaction().commit();
         } catch (RollbackException r) {
-            r.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -173,7 +164,7 @@ public class DataGenerator {
         return c;
     }
 
-    public void createRandomAddress() {
+    public Address createRandomAddress() {
         Address a = new Address(streetAddresses[ran.nextInt(streetAddresses.length)] + ran.nextInt(250), "desc", getCityInfo(ran.nextInt(1200)));
         EntityManager em = getManager();
         try {
@@ -185,7 +176,7 @@ public class DataGenerator {
             em.getTransaction().rollback();
         } finally {
             em.close();
-        }
+        } return a;
     }
 
     private EntityManager getManager() {

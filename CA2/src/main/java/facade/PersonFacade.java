@@ -209,7 +209,6 @@ public class PersonFacade {
             em.persist(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
-            r.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
@@ -217,28 +216,26 @@ public class PersonFacade {
         return person;
     }
     
-//    public Person createPerson(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
-//        EntityManager em = getEntityManager();
-//        CityInfo cityInfo = getCityInfoByZip(zipCode);
-//        Address address = new Address(street, additionalAddressInfo, cityInfo);
-//
-//        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
-//        for (Phone phone : phones) {
-//            phone.setInfoEntity(person);
-//        }
-//        
-//        try {
-//            em.getTransaction().begin();
-//            em.persist(person);
-//            em.getTransaction().commit();
-//        } catch (RollbackException r) {
-//            r.printStackTrace();
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return person;
-//    }
+    public Person createPerson(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
+        EntityManager em = getEntityManager();
+        CityInfo cityInfo = getCityInfoByZip(zipCode);
+        Address address = new Address(street, additionalAddressInfo, cityInfo);
+        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
+        for (Phone phone : phones) {
+            phone.setInfoEntity(person);
+        }
+        try {
+            em.getTransaction().begin();
+            em.persist(person);
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return person;
+    }
     
     public Person updatePerson(int id, String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
         EntityManager em = getEntityManager();
