@@ -1,13 +1,15 @@
 package jsonMappers;
 
+import entity.Phone;
+
 /**
  *
  * @author Joacim
  */
 public class PhoneJson {
     public String description, number;
-    public PhoneJson(String description, String number) {
-        this.description = description;
-        this.number = number;
+    public PhoneJson(Phone phone) {
+        this.description = phone.getDescription();
+        this.number = phone.getNumber();
     }
 }
