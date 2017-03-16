@@ -167,12 +167,12 @@ public class PersonFacade {
         return count;
     }
 
-    public List<CityInfo> getZipCodesInDk() {
+    public List<CityInfo> getZipCodes() {
         EntityManager em = getEntityManager();
         List<CityInfo> zipCodes = null;
         try {
             em.getTransaction().begin();
-            TypedQuery<CityInfo> query = em.createQuery("SELECT c.zip FROM CityInfo c WHERE c.id < 1190", CityInfo.class);
+            TypedQuery<CityInfo> query = em.createQuery("SELECT c.zip FROM CityInfo c", CityInfo.class);
             zipCodes = query.getResultList();
             em.getTransaction().commit();
         } catch (RollbackException r) {

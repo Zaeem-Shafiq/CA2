@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
+import javax.persistence.TypedQuery;
 
 public class DataGenerator {
 
@@ -149,12 +150,12 @@ public class DataGenerator {
         }
     }
 
-    public CityInfo getCityInfo(int id) {
+    public CityInfo getCityInfo(int zip) {
         EntityManager em = getManager();
         CityInfo c = new CityInfo();
         try {
             em.getTransaction().begin();
-            c = em.find(CityInfo.class, id);
+            c = em.find(CityInfo.class, zip);
             em.getTransaction().commit();
         } catch (RollbackException r) {
             em.getTransaction().rollback();
@@ -165,7 +166,10 @@ public class DataGenerator {
     }
 
     public Address createRandomAddress() {
-        Address a = new Address(streetAddresses[ran.nextInt(streetAddresses.length)] + ran.nextInt(250), "desc", getCityInfo(ran.nextInt(1200)));
+        List<CityInfo> zips = getZipIds();   
+        int randomNumber = ran.nextInt(zips.size());
+        CityInfo cityInfo = new CityInfo(zips.get(randomNumber).getZip(), zips.get(randomNumber).getCity());
+        Address a = new Address(streetAddresses[ran.nextInt(streetAddresses.length)] + ran.nextInt(250), "desc", cityInfo);
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -177,6 +181,23 @@ public class DataGenerator {
         } finally {
             em.close();
         } return a;
+    }
+    
+    public List<CityInfo> getZipIds() {
+        EntityManager em = getManager();
+        List<CityInfo> zipCodes = null;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<CityInfo> query = em.createQuery("SELECT c FROM CityInfo c", CityInfo.class);
+            zipCodes = query.getResultList();
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return zipCodes;
     }
 
     private EntityManager getManager() {

@@ -74,7 +74,7 @@ public class PersonFacadeTest {
     
     @Test
     public void TestGetZipCodesInDk(){
-        List<CityInfo> ci = pf.getZipCodesInDk();
+        List<CityInfo> ci = pf.getZipCodes();
         assertEquals(1189, ci.size());
     }
     
