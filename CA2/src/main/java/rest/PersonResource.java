@@ -89,12 +89,12 @@ public class PersonResource {
      * @param content representation for the resource
      * @return json
      */
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String postData(String content) {
-        Person p = gson.fromJson(content, Person.class);
-        new PersonFacade("PU").createPerson(p.getFirstName(), p.getLastName(), p.getHobbies(), p.getEmail(),p.getPhones() ,p.getAddress().getCityInfo().getZip(), p.getAddress().getStreet(), p.getAddress().getAdditionalInfo());
-        return gson.toJson(p);
-    }
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String postData(String content) {
+//        Person p = gson.fromJson(content, Person.class);
+//        new PersonFacade("PU").createPerson(p.getFirstName(), p.getLastName(), p.getHobbies(), p.getEmail(),p.getPhones() ,p.getAddress().getCityInfo().getZip(), p.getAddress().getStreet(), p.getAddress().getAdditionalInfo());
+//        return gson.toJson(p);
+//    }
 }

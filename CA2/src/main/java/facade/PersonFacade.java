@@ -269,4 +269,20 @@ public class PersonFacade {
         }
         return person;
     }
+    
+    public Person deletePerson(int id) {
+        EntityManager em = getEntityManager();
+        Person person = em.find(Person.class, id);
+        try {
+            em.getTransaction().begin();
+            em.remove(person);
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return person;
+    }
 }
