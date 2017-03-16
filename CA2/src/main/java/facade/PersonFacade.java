@@ -21,7 +21,7 @@ public class PersonFacade {
     public PersonFacade(String persistence) {
         emf = Persistence.createEntityManagerFactory(persistence);
     }
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -37,7 +37,7 @@ public class PersonFacade {
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
 //        System.out.println(pf.getCityInfoByZip(3390));
-        System.out.println(pf.createPerson("Tom", "Tomsen", "Sleeping", "Snoring", "myMail@gmail.com", "43434686", "Mobile", 2620, "Hedemarksvej 60, 2. th", "No info"));
+//        System.out.println(pf.createPerson("Tom", "Tomsen", "Sleeping", "Snoring", "myMail@gmail.com", "98765432", "Mobile", 2625, "Hedemarksvej 60, 2. th", "No info"));
     }
 
     public Person getPersonById(int id) {
@@ -107,7 +107,7 @@ public class PersonFacade {
         }
         return phones;
     }
-    
+
     public List<Person> getPersonsByZip(int zipCode) {
         EntityManager em = getEntityManager();
         List<Person> persons = null;
@@ -197,21 +197,53 @@ public class PersonFacade {
         return cityInfo;
     }
 
-    public Person createPerson(String firstName, String lastName, String hobbyName, String hobbyDescription,
-            String email, String phoneNumber, String phoneDescription, int zipCode, String street, String additionalAddressInfo) {
+    public Person createPerson(String firstName, String lastName, String hobbyName, String hobbyDescription, String email,
+            String phoneNumber, String phoneDescription, int zipCode, String street, String additionalAddressInfo) {
         EntityManager em = getEntityManager();
         List<Hobby> hobbies = new ArrayList();
         List<Phone> phones = new ArrayList();
         CityInfo cityInfo = getCityInfoByZip(zipCode);
         Address address = new Address(street, additionalAddressInfo, cityInfo);
- 
-        hobbies.add(new Hobby(hobbyName, hobbyDescription));
-        phones.add(new Phone(phoneNumber, phoneDescription));
-        
+
         Person person = new Person(firstName, lastName, hobbies, email, phones, address);
+
+        hobbies.add(new Hobby(hobbyName, hobbyDescription));
+        phones.add(new Phone(person, phoneNumber, phoneDescription));
+
         try {
             em.getTransaction().begin();
             em.persist(person);
+            em.getTransaction().commit();
+        } catch (RollbackException r) {
+            r.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return person;
+    }
+
+    public Person updatePerson(int id, String firstName, String lastName, String hobbyName, String hobbyDescription, String email,
+            String phoneNumber, String phoneDescription, int zipCode, String street, String additionalAddressInfo) {
+        EntityManager em = getEntityManager();
+        List<Hobby> hobbies = new ArrayList();
+        List<Phone> phones = new ArrayList();
+        CityInfo cityInfo = getCityInfoByZip(zipCode);
+
+        Person person = null;
+
+        hobbies.add(new Hobby(hobbyName, hobbyDescription));
+        phones.add(new Phone(person, phoneNumber, phoneDescription));
+
+        try {
+            em.getTransaction().begin();
+            person = em.find(Person.class, id);
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setHobbies(hobbies);
+            person.setEmail(email);
+            person.setPhones(phones);
+            person.setAddress(new Address(street, additionalAddressInfo, cityInfo));
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
