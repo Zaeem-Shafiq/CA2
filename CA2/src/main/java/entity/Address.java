@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class Address implements Serializable {
     private Integer id;
     private String street;
     private String additionalInfo;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private CityInfo cityInfo;
     @OneToMany(mappedBy = "address", cascade = {CascadeType.ALL})
     private List<InfoEntity> infoEntities;
