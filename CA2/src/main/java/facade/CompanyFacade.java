@@ -10,18 +10,22 @@ import javax.persistence.TypedQuery;
 
 public class CompanyFacade {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+    private EntityManagerFactory emf;
 
+    public CompanyFacade(String persistence) {
+        emf = Persistence.createEntityManagerFactory(persistence);
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public static void main(String[] args) {
-        CompanyFacade cf = new CompanyFacade();
+//    public static void main(String[] args) {
+//        CompanyFacade cf = new CompanyFacade();
 //        System.out.println(cf.getCompanyByCvr(768484).toString());
 //        System.out.println(cf.getCompanyByPhoneNumber("78314171").toString());
 //        System.out.println(cf.getCompaniesWithEmployees(154).toString());
-    }
+//    }
 
     public Company getCompanyByCvr(int cvr) {
         EntityManager em = getEntityManager();
