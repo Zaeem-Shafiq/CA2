@@ -37,12 +37,12 @@ public class PersonFacade {
 //        System.out.println(pf.getCountOfPersonsWithHobby("football"));
 //        System.out.println(pf.getZipCodesInDk());
 //        System.out.println(pf.getCityInfoByZip(3390));
-//        List<Hobby> hobbies = new ArrayList();
-//        List<Phone> phones = new ArrayList();
-//        hobbies.add(new Hobby("Football", "Score goals"));
-//        phones.add(new Phone("99999999", "no des"));
+        List<Hobby> hobbies = new ArrayList();
+        List<Phone> phones = new ArrayList();
+        hobbies.add(new Hobby("Football", "Score goals"));
+        phones.add(new Phone("99999999", "no des"));
 //        System.out.println(pf.createPerson("Peter", "Klausen", hobbies, "hej@hotmail.com", phones, 2500, "En vej 212", "nothing"));
-//        System.out.println(pf.updatePerson(10, "Lars", "Tomsen", "Runnnig", "Nothing", "Mail@gmail.com", "22222222", "Tlf", 2635, "Gedemarksvej 60, 2. th", "Hello"));
+        System.out.println(pf.updatePerson(30, "Lars", "Tomsen", hobbies, "Mail@gmail.com", phones, 2635, "Gedemarksvej 60, 2. th", "Hello"));
     }
 
     public Person getPersonById(int id) {
@@ -202,16 +202,8 @@ public class PersonFacade {
         return cityInfo;
     }
 
-    public Person createPerson(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
+        public Person createPerson(Person person) {
         EntityManager em = getEntityManager();
-        CityInfo cityInfo = getCityInfoByZip(zipCode);
-        Address address = new Address(street, additionalAddressInfo, cityInfo);
-
-        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
-        for (Phone phone : phones) {
-            phone.setInfoEntity(person);
-        }
-        
         try {
             em.getTransaction().begin();
             em.persist(person);
@@ -225,22 +217,42 @@ public class PersonFacade {
         return person;
     }
     
-    public Person updatePerson(int id, String firstName, String lastName, String hobbyName, String hobbyDescription, String email,
-            String phoneNumber, String phoneDescription, int zipCode, String street, String additionalAddressInfo) {
+//    public Person createPerson(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
+//        EntityManager em = getEntityManager();
+//        CityInfo cityInfo = getCityInfoByZip(zipCode);
+//        Address address = new Address(street, additionalAddressInfo, cityInfo);
+//
+//        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
+//        for (Phone phone : phones) {
+//            phone.setInfoEntity(person);
+//        }
+//        
+//        try {
+//            em.getTransaction().begin();
+//            em.persist(person);
+//            em.getTransaction().commit();
+//        } catch (RollbackException r) {
+//            r.printStackTrace();
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        return person;
+//    }
+    
+    public Person updatePerson(int id, String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
         EntityManager em = getEntityManager();
-        List<Hobby> hobbies = new ArrayList();
-        List<Phone> phones = new ArrayList();
         CityInfo cityInfo = getCityInfoByZip(zipCode);
         
-        hobbies.add(new Hobby(hobbyName, hobbyDescription));
-
         Person person = null;
 
         try {
             em.getTransaction().begin();
             person = em.find(Person.class, id);
             
-            phones.add(new Phone(person, phoneNumber, phoneDescription));
+            for (Phone phone : phones) {
+                phone.setInfoEntity(person);
+            }
             
             person.setFirstName(firstName);
             person.setLastName(lastName);
