@@ -65,7 +65,7 @@ public class Phone implements Serializable {
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
     }
-
+    
     @Override
     public String toString() {
         return "Phone{" + "infoEntity=" + infoEntity + ", id=" + id + ", number=" + number + ", description=" + description + '}';
