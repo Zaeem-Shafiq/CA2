@@ -90,12 +90,12 @@ public class PersonResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String postData(String content) {
-        Person p = gson.fromJson(content, Person.class);
-        for (Phone phone : p.getPhones()) {
-            phone.setInfoEntity(p);
+        Person person = gson.fromJson(content, Person.class);
+        for (Phone phone : person.getPhones()) {
+            phone.setInfoEntity(person);
         }
-        new PersonFacade("PU").createPerson(p);
-        return gson.toJson(p);
+        new PersonFacade("PU").createPerson(person);
+        return gson.toJson(person);
     }
 
 }
