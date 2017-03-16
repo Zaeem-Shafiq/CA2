@@ -44,28 +44,9 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() {
-        List<Person> persons = new PersonFacade("PU").getPersons();
-        
-    jsonMappers.Person person = new jsonMappers.Person(persons.get(0));
+        List<Person> persons = new PersonFacade("PU").getPersons();        
+        jsonMappers.PersonJson person = new jsonMappers.PersonJson(persons.get(0));
         return gson.toJson(person);
-        
-//        JsonArray names = new JsonArray();
-//        for (int i = 0; i < persons.size(); i++) { 
-//            List<Hobby> hobbies = persons.get(i).getHobbies();
-//            JsonArray hobbyList = new JsonArray();
-//            for (int j = 0; j < hobbies.size(); j++) {
-//                JsonObject hobbyObject = new JsonObject();
-//                hobbyObject.addProperty("description", hobbies.get(j).getDescription());
-//                hobbyObject.addProperty("name", hobbies.get(j).getName());
-//                hobbyList.add(hobbyObject);
-//            }           
-//            JsonObject person = new JsonObject();
-//            person.addProperty("fName", persons.get(i).getFirstName());
-//            person.addProperty("lName", persons.get(i).getLastName());  
-//            person.addProperty("hobbies",gson.toJson(hobbyList));            
-//            names.add(person);
-//        }
-//        return gson.toJson(names);
     }
 
     /**
