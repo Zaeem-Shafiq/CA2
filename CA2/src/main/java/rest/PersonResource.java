@@ -14,6 +14,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
@@ -83,12 +84,17 @@ public class PersonResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of PersonResource
+     * PUT method for updating or creating an instance of PersonResouce
      *
      * @param content representation for the resource
+     * @return json
      */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String postData(String content) {
+        Person p = gson.fromJson(content, Person.class);
+        new PersonFacade("PU").createPerson(p.getFirstName(), p.getLastName(), p.getHobbies(), p.getEmail(),p.getPhones() ,p.getAddress().getCityInfo().getZip(), p.getAddress().getStreet(), p.getAddress().getAdditionalInfo());
+        return gson.toJson(p);
     }
 }
