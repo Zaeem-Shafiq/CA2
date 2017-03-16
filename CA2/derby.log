@@ -1,4 +1,4 @@
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -69,7 +69,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -298,7 +298,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -368,7 +368,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -594,7 +594,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -665,7 +665,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -894,7 +894,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -964,7 +964,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -1190,7 +1190,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -1261,7 +1261,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -1490,7 +1490,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -1560,7 +1560,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -1786,7 +1786,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -1857,7 +1857,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -2086,7 +2086,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -2156,7 +2156,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -2382,7 +2382,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -2453,7 +2453,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -2682,7 +2682,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 ============= end nested exception, level (2) ===========
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -2752,7 +2752,7 @@ ERROR XBM0A: The database directory 'C:\Users\Joacim.JVELT\Desktop\ca2\CA2\Users
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Cleanup action completed
-Thu Mar 16 11:20:12 CET 2017 Thread[main,5,main] Cleanup action starting
+Thu Mar 16 13:26:54 CET 2017 Thread[main,5,main] Cleanup action starting
 java.sql.SQLException: Failed to create database 'Users', see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
