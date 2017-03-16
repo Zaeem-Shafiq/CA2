@@ -20,6 +20,7 @@ public class DataGenerator {
     private EntityManagerFactory emf;
     
     public DataGenerator(String database) {
+        
         emf = Persistence.createEntityManagerFactory(database);
     }
     
