@@ -37,7 +37,7 @@ public class CompanyFacadeTest {
     
     @Test
     public void testGetCompaniesWithEmployees(){
-        List<Company> c = cf.getCompaniesWithEmployees(11);
+        List<Company> c = cf.getCompaniesWithEmployeesMoreThan(11);
         assertEquals(2, c.size());
         assertEquals(12, Integer.parseInt(c.get(0).getNumEmployees().toString()));
         assertEquals(13, Integer.parseInt(c.get(1).getNumEmployees().toString()));

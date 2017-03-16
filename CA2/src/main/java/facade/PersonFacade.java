@@ -47,7 +47,7 @@ public class PersonFacade {
 //        System.out.println(pf.createPerson("Peter", "Klausen", hobbies, "hej@hotmail.com", phones, 2500, "En vej 212", "nothing"));
 //        System.out.println(pf.updatePerson(1, "Lars", "Tomsen", hobbies, "Mail@gmail.com", phones, 2635, "Gedemarksvej 60, 2. th", "Hello"));
 //        System.out.println(pf.updatePerson(person));
-        pf.deletePerson(101);
+//        pf.deletePerson(101);
     }
 
     public Person getPersonById(int id) {
