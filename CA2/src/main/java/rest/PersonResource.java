@@ -21,11 +21,6 @@ import javax.ws.rs.core.MediaType;
 import jsonMappers.PersonContact;
 import jsonMappers.PersonJson;
 
-/**
- * REST Web Service
- *
- * @author Joacim
- */
 @Path("Person")
 public class PersonResource {
 
@@ -35,9 +30,6 @@ public class PersonResource {
     @Context
     private UriInfo context;
 
-    /**
-     * Creates a new instance of PersonResource
-     */
     public PersonResource() {
     }
 
