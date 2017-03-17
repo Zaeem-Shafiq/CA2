@@ -122,7 +122,7 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-        return person;
+        return getPersonById(person.getId());
     }
 
     public boolean deletePerson(int id) {
