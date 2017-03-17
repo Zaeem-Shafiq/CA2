@@ -29,7 +29,7 @@ public class RestIntegrationTest {
 
     @Test
     public void getPersonByID() {
-        given().pathParam("id", 11).when().get("api/Person/{id}").then().statusCode(200).body("id", equalTo(11));
+        given().pathParam("id", 13).when().get("api/Person/{id}").then().statusCode(200).body("id", equalTo(13));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class RestIntegrationTest {
 
     @Test
     public void getPersonContactInfoById() {
-        given().pathParam("id", 11).when().get("api/Person/contactinfo/{id}").then().statusCode(200).body("id", equalTo(11));
+        given().pathParam("id", 13).when().get("api/Person/contactinfo/{id}").then().statusCode(200).body("id", equalTo(13));
     }
 
     @Test
@@ -51,7 +51,33 @@ public class RestIntegrationTest {
 
     @Test
     public void updatePersonById() {
-        given().when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
+        String person = "{\n"
+                + "  \"id\": 13,\n"
+                + "  \"firstName\": \"Laurette\",\n"
+                + "  \"lastName\": \"Dougherty\",\n"
+                + "  \"email\": \"ccohen123@icloud.com\",\n"
+                + "  \"address\": {\n"
+                + "    \"street\": \" 8088 Clark Court 22\",\n"
+                + "    \"additionalInfo\": \"desc\"\n"
+                + "  },\n"
+                + "  \"hobbies\": [\n"
+                + "    {\n"
+                + "      \"description\": \"run around\",\n"
+                + "      \"name\": \"football\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"phones\": [\n"
+                + "    {\n"
+                + "      \"description\": \"Mobile\",\n"
+                + "      \"number\": \"16345723\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"cityInfo\": {\n"
+                + "    \"city\": \"København K\",\n"
+                + "    \"zip\": 1402\n"
+                + "  }\n"
+                + "}";
+        given().body(person).when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
     }
 
 }
