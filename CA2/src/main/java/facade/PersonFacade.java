@@ -28,7 +28,6 @@ public class PersonFacade {
 
     public static void main(String[] args) {
         PersonFacade pf = new PersonFacade("PU");
-
 //        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("17136178").toString());
 //        System.out.println(pf.getPersons().toString());
@@ -103,6 +102,7 @@ public class PersonFacade {
             em.persist(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
+            r.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();

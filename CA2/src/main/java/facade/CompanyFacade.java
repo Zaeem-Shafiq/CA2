@@ -62,6 +62,7 @@ public class CompanyFacade {
             em.persist(company);
             em.getTransaction().commit();
         } catch (RollbackException r) {
+            r.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
