@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.RollbackException;
+import javax.persistence.TypedQuery;
 import model.DataGenerator;
 
 public class TestDataGenerator {
@@ -171,7 +172,9 @@ public class TestDataGenerator {
     }
 
     public void createAddress(int i) {
-        Address a = new Address(streetAddresses[i] + i, "desc", getCityInfo(1));
+        List<CityInfo> zips = getZipIds();
+        CityInfo cityInfo = new CityInfo(zips.get(i).getZip(), zips.get(i).getCity());
+        Address a = new Address(streetAddresses[i] + i, "desc", cityInfo);
         EntityManager em = getManager();
         try {
             em.getTransaction().begin();
@@ -198,6 +201,14 @@ public class TestDataGenerator {
         } finally {
             em.close();
         }
+    }
+
+    public List<CityInfo> getZipIds() {
+        EntityManager em = getManager();
+        List<CityInfo> zipCodes = null;
+        TypedQuery<CityInfo> query = em.createQuery("SELECT c FROM CityInfo c", CityInfo.class);
+        zipCodes = query.getResultList();
+        return zipCodes;
     }
 
     private EntityManager getManager() {

@@ -50,14 +50,12 @@ public class PersonFacadeTest {
         assertEquals("Pearle", p.get(2).getFirstName());
     }
     
-//    @Test
-//    public void testGetPersonByZip() {
-//        List<Person> p = pf.getPersonsByZip(555);
-//        assertEquals(3, p.size());
-//        assertEquals("Andy", p.get(0).getFirstName());
-//        assertEquals("Taunya", p.get(1).getFirstName());
-//        assertEquals("Pearle", p.get(2).getFirstName());
-//    }
+    @Test
+    public void testGetPersonByZip() {
+        List<Person> p = pf.getPersonsByZip(800);
+        assertEquals(1, p.size());
+        assertEquals("Andy", p.get(0).getFirstName());
+    }
     
     @Test
     public void testGetPersonByHobby() {
