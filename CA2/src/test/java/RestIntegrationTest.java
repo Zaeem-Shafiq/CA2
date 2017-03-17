@@ -1,4 +1,6 @@
 
+import entity.Person;
+import facade.PersonFacade;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
@@ -42,7 +44,14 @@ public class RestIntegrationTest {
 
     @Test
     public void deletePersonById() {
-        given().pathParam("id", 63).when().delete("api/Person/{id}").then().statusCode(200);
+        PersonFacade pf = new PersonFacade("PU");
+        Person p = pf.createPerson(new Person("Bob", "Bobby", null, "bob@gmail.com", null, null));
+        given().pathParam("id", p.getId()).when().delete("api/Person/{id}").then().statusCode(200).body("isSucced", equalTo("Deleted"));
+    }
+
+    @Test
+    public void updatePersonById() {
+        given().when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
     }
 
 }
