@@ -88,7 +88,7 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String deletePerson(@PathParam("id") int id) {
         personFacade.deletePerson(id);
-        return gson.toJson("Succes!");
+        return "{\"isSucced\" : \"Deleted\"}";
     }
 
     @PUT
@@ -96,7 +96,7 @@ public class PersonResource {
     public String updatePerson(String content) {
         Person person = gson.fromJson(content, Person.class);
         personFacade.updatePerson(person);
-        return gson.toJson("Person updated");
+        return "{\"isSucced\" : \"Updated\"}";
     }
 
     @POST
