@@ -47,7 +47,7 @@ public class PersonFacade {
 //        System.out.println(pf.createPerson("Peter", "Klausen", hobbies, "hej@hotmail.com", phones, 2500, "En vej 212", "nothing"));
 //        System.out.println(pf.updatePerson(1, "Lars", "Tomsen", hobbies, "Mail@gmail.com", phones, 2635, "Gedemarksvej 60, 2. th", "Hello"));
 //        System.out.println(pf.updatePerson(person));
-//        pf.deletePerson(101);
+//        pf.deletePerson(97);
     }
 
     public Person getPersonById(int id) {
@@ -165,7 +165,7 @@ public class PersonFacade {
         Person personToBeUpdated = null;
         try {
             em.getTransaction().begin();
-            personToBeUpdated = em.find(Person.class, person.getId());
+            personToBeUpdated = getPersonById(person.getId());
             personToBeUpdated.setFirstName(person.getFirstName());
             personToBeUpdated.setLastName(person.getLastName());
             personToBeUpdated.setHobbies(person.getHobbies());
@@ -184,9 +184,11 @@ public class PersonFacade {
 
     public void deletePerson(int id) {
         EntityManager em = getEntityManager();
+        Person person = getPersonById(id);
         try {
             em.getTransaction().begin();
-            em.remove(getPersonById(id));
+            person = em.merge(person);
+            em.remove(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
