@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Person;
 import entity.Phone;
+import exception.PersonNotFoundException;
 import facade.PersonFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,6 @@ import javax.ws.rs.core.MediaType;
 import jsonMappers.PersonContact;
 import jsonMappers.PersonJson;
 
-/**
- * REST Web Service
- *
- * @author Joacim
- */
 @Path("Person")
 public class PersonResource {
 
@@ -35,45 +31,49 @@ public class PersonResource {
     @Context
     private UriInfo context;
 
-    /**
-     * Creates a new instance of PersonResource
-     */
     public PersonResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of rest.PersonResource
-     *
-     * @return an instance of java.lang.String
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersons() {
-        List<Person> persons = personFacade.getPersons();
-        List<PersonJson> personsJson = new ArrayList();
-        for (Person person : persons) {
-            personsJson.add(new PersonJson(person));
+    public String getAllPersons() throws PersonNotFoundException {
+        try {
+            List<Person> persons = personFacade.getPersons();
+            List<PersonJson> personsJson = new ArrayList();
+            for (Person person : persons) {
+                personsJson.add(new PersonJson(person));
+            }
+            return gson.toJson(personsJson);
+        } catch (Exception e) {
+            throw new PersonNotFoundException("No persons exist");
         }
-        return gson.toJson(personsJson);
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonById(@PathParam("id") int id) {
-        return gson.toJson(new PersonJson(personFacade.getPersonById(id)));
+    public String getPersonById(@PathParam("id") int id) throws PersonNotFoundException {
+        try {
+            return gson.toJson(new PersonJson(personFacade.getPersonById(id)));
+        } catch (Exception e) {
+            throw new PersonNotFoundException("Person with requested id not found");
+        }
     }
 
     @GET
     @Path("contactinfo")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllPersonsContactInfo() {
-        List<Person> persons = personFacade.getPersons();
-        List<PersonContact> personsJson = new ArrayList();
-        for (Person person : persons) {
-            personsJson.add(new PersonContact(person));
+    public String getAllPersonsContactInfo() throws PersonNotFoundException {
+        try {
+            List<Person> persons = personFacade.getPersons();
+            List<PersonContact> personsJson = new ArrayList();
+            for (Person person : persons) {
+                personsJson.add(new PersonContact(person));
+            }
+            return gson.toJson(personsJson);
+        } catch (Exception e) {
+            throw new PersonNotFoundException("No persons exist");
         }
-        return gson.toJson(personsJson);
     }
 
     @GET
@@ -88,23 +88,17 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String deletePerson(@PathParam("id") int id) {
         personFacade.deletePerson(id);
-        return gson.toJson("Succes");
-    }
-    
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    public String updatePerson(String content){
-        Person person = gson.fromJson(content, Person.class);
-        personFacade.updatePerson(person);
-        return gson.toJson("person updated");
+        return gson.toJson("Succes!");
     }
 
-    /**
-     * PUT method for updating or creating an instance of PersonResouce
-     *
-     * @param content representation for the resource
-     * @return json
-     */
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public String updatePerson(String content) {
+        Person person = gson.fromJson(content, Person.class);
+        personFacade.updatePerson(person);
+        return gson.toJson("Person updated");
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

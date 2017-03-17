@@ -3,10 +3,6 @@ package rest;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-/**
- *
- * @author Joacim
- */
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
@@ -17,14 +13,11 @@ public class ApplicationConfig extends Application {
         return resources;
     }
 
-    /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
-     */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(exception.ExceptionMapper.class);
+        resources.add(exception.NotFoundExceptionMapper.class);
+        resources.add(exception.PersonNotFoundExceptionMapper.class);
         resources.add(rest.PersonResource.class);
     }
-    
+
 }
