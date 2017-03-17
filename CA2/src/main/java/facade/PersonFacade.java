@@ -40,7 +40,8 @@ public class PersonFacade {
 //        List<Phone> phones = new ArrayList();
 //        CityInfo cityInfo = pf.getCityInfoByZip(2600);
 //        Address address = new Address("Hejvej 12", "nothing", cityInfo);
-//        Person person = new Person("Ole", "Petersen", hobbies, "hej@gmail.com", phones, address);
+//        Person person = pf.getPersonById(1);
+//        person.setFirstName("zam");
 //        hobbies.add(new Hobby("Football", "Score goals"));
 //        phones.add(new Phone(person, "99999999", "no des"));
 //        person.setId(35);
@@ -106,72 +107,14 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-        return person;
-    }
-
-    public Person createPerson(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
-        EntityManager em = getEntityManager();
-        CityInfo cityInfo = getCityInfoByZip(zipCode);
-        Address address = new Address(street, additionalAddressInfo, cityInfo);
-        Person person = new Person(firstName, lastName, hobbies, email, phones, address);
-        for (Phone phone : phones) {
-            phone.setInfoEntity(person);
-        }
-        try {
-            em.getTransaction().begin();
-            em.persist(person);
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-            r.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return person;
-    }
-
-    public Person updatePerson(int id, String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, int zipCode, String street, String additionalAddressInfo) {
-        EntityManager em = getEntityManager();
-        CityInfo cityInfo = getCityInfoByZip(zipCode);
-
-        Person person = null;
-
-        try {
-            em.getTransaction().begin();
-            person = em.find(Person.class, id);
-
-            for (Phone phone : phones) {
-                phone.setInfoEntity(person);
-            }
-
-            person.setFirstName(firstName);
-            person.setLastName(lastName);
-            person.setHobbies(hobbies);
-            person.setEmail(email);
-            person.setPhones(phones);
-            person.setAddress(new Address(street, additionalAddressInfo, cityInfo));
-            em.getTransaction().commit();
-        } catch (RollbackException r) {
-            r.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return person;
+        return getPersonById(person.getId());
     }
 
     public Person updatePerson(Person person) {
         EntityManager em = getEntityManager();
-        Person personToBeUpdated = null;
         try {
             em.getTransaction().begin();
-            personToBeUpdated = getPersonById(person.getId());
-            personToBeUpdated.setFirstName(person.getFirstName());
-            personToBeUpdated.setLastName(person.getLastName());
-            personToBeUpdated.setHobbies(person.getHobbies());
-            personToBeUpdated.setEmail(person.getEmail());
-            personToBeUpdated.setPhones(person.getPhones());
-            personToBeUpdated.setAddress(person.getAddress());
+            em.merge(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
             r.printStackTrace();
@@ -179,10 +122,10 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-        return personToBeUpdated;
+        return person;
     }
 
-    public void deletePerson(int id) {
+    public boolean deletePerson(int id) {
         EntityManager em = getEntityManager();
         Person person = getPersonById(id);
         try {
@@ -193,9 +136,10 @@ public class PersonFacade {
         } catch (RollbackException r) {
             r.printStackTrace();
             em.getTransaction().rollback();
+            return false;
         } finally {
             em.close();
         }
-//        return person;
+        return true;
     }
 }
