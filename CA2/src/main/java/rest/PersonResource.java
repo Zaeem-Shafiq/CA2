@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -78,6 +79,16 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonContactInfoId(@PathParam("id")int id) {        
         return gson.toJson(new PersonContact(new PersonFacade("PU").getPersonById(id)));
+    }
+    
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletePerson(){
+        boolean zam;
+        
+        
+        
     }
 
     /**
