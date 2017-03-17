@@ -27,7 +27,7 @@ public class RestIntegrationTest {
 
     @Test
     public void getPersonByID() {
-        given().pathParam("id", 9).when().get("api/Person/{id}").then().statusCode(200).body("id", equalTo(9));
+        given().pathParam("id", 11).when().get("api/Person/{id}").then().statusCode(200).body("id", equalTo(11));
     }
 
     @Test
@@ -37,12 +37,12 @@ public class RestIntegrationTest {
 
     @Test
     public void getPersonContactInfoById() {
-        given().pathParam("id", 9).when().get("api/Person/contactinfo/{id}").then().statusCode(200).body("id", equalTo(9));
+        given().pathParam("id", 11).when().get("api/Person/contactinfo/{id}").then().statusCode(200).body("id", equalTo(11));
     }
 
     @Test
     public void deletePersonById() {
-        given().pathParam("id", 67).when().delete("api/Person/{id}").then().statusCode(200).body(equalTo("Succes"));
+        given().pathParam("id", 63).when().delete("api/Person/{id}").then().statusCode(200);
     }
 
 }
