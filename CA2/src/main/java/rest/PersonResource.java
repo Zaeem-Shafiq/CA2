@@ -14,7 +14,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -80,11 +79,11 @@ public class PersonResource {
     @GET
     @Path("contactinfo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonContactInfoId(@PathParam("id") int id) throws NotFoundException {
+    public String getPersonContactInfoId(@PathParam("id") int id) throws PersonNotFoundException {
         try {
             return gson.toJson(new PersonContact(personFacade.getPersonById(id)));
         } catch (Exception e) {
-            throw new NotFoundException("Person with requested id not found");
+            throw new PersonNotFoundException("Person with requested id not found");
         }
     }
 
