@@ -1,6 +1,7 @@
 package jsonMappers;
 
 import entity.Hobby;
+import entity.Person;
 import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class PersonJson {
     public List<PhoneJson> phones = new ArrayList();
     public CityInfoJson cityInfo;
 
-    public PersonJson(entity.Person person) {
+    public PersonJson(Person person) {
         this.id = person.getId();
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
