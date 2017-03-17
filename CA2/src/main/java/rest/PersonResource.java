@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Hobby;
 import entity.Person;
 import entity.Phone;
 import exception.PersonNotFoundException;
@@ -38,6 +39,7 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() throws PersonNotFoundException {
         try {
+            System.out.println("prøver");
             List<Person> persons = personFacade.getPersons();
             List<PersonJson> personsJson = new ArrayList();
             for (Person person : persons) {
@@ -99,6 +101,9 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String updatePerson(String content) {
         Person person = gson.fromJson(content, Person.class);
+        for (Phone phone : person.getPhones()) {
+            phone.setInfoEntity(person);
+        }
         personFacade.updatePerson(person);
         return "{\"isSucced\" : \"Updated\"}";
     }

@@ -1,11 +1,7 @@
 package facade;
 
-import entity.Address;
 import entity.CityInfo;
-import entity.Hobby;
 import entity.Person;
-import entity.Phone;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,9 +24,9 @@ public class PersonFacade {
 
     public static void main(String[] args) {
         PersonFacade pf = new PersonFacade("PU");
-//        System.out.println(pf.getPersonById(1).toString());
+        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("17136178").toString());
-//        System.out.println(pf.getPersons().toString());
+//       System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByZip(2600).toString());
 //        System.out.println(pf.getPersonsByHobby("fishing").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("fishing"));
@@ -114,15 +110,14 @@ public class PersonFacade {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
-            em.merge(person);
+            person = em.merge(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
-            r.printStackTrace();
             em.getTransaction().rollback();
         } finally {
             em.close();
         }
-        return getPersonById(person.getId());
+        return person;
     }
 
     public boolean deletePerson(int id) {
@@ -134,7 +129,6 @@ public class PersonFacade {
             em.remove(person);
             em.getTransaction().commit();
         } catch (RollbackException r) {
-            r.printStackTrace();
             em.getTransaction().rollback();
             return false;
         } finally {
