@@ -99,7 +99,6 @@ public class PersonResource {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public String updatePerson(String content) {
-        System.out.println(content);
         Person person = gson.fromJson(content, Person.class);
         System.out.println(person);
         for (Phone phone : person.getPhones()) {

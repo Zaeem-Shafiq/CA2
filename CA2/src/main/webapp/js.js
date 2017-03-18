@@ -4,7 +4,21 @@ window.onload = function (e) {
     fetchData("Person");
 };
 
+var deletePerson = function(){
+    var tbl = $('#persons tr:has(td)').map(function (i, v) {
+        var $td = $('td', this);
+        return {
+            id: $td.eq(0).text(),
+            
+        };
+    }).get();
+    var url = "http://localhost:8084/CA2/api/Person/"+tbl[0].id;
+    fetch(url, {method: "DELETE"}).then(function(res){ return res.json(); })
+    .then(function(data){ fetchData('Person') })
+}
+
 var editPerson = function () {
+    saveRow();
     var tbl = $('#persons tr:has(td)').map(function (i, v) {
         var $td = $('td', this);
         return {
@@ -51,7 +65,12 @@ var editPerson = function () {
     };
     var data = JSON.stringify(person1);
     var url = "http://localhost:8084/CA2/api/Person";
-    fetch(url, {method: "PUT", body: data});
+    fetch(url, {method: "PUT", body: data})
+    .then(function(res){ return res.json(); })
+    .then(function(data){ fetchData('Person') })
+            
+    ;
+//    fetchData('Person');
 };
 
 var fetchData = function (urli) {
@@ -66,36 +85,50 @@ var fetchData = function (urli) {
 
 var createJsonArray = function (text) {
     document.getElementById("btn").style.visibility = "hidden";
+    document.getElementById("btn1").style.visibility = "hidden";
+    document.getElementById("btn2").style.visibility = "hidden";
     var personArray = JSON.parse(text);
     if (personArray.length === undefined) {
         personArray = [JSON.parse(text)];
         document.getElementById("btn").style.visibility = "visible";
+        document.getElementById("btn1").style.visibility = "visible";
+        document.getElementById("btn2").style.visibility = "visible";
         populateTable(personArray);
         editRow();
     } else if (personArray.length > 0) {
-        populateTable(personArray);
+        populateTable(personArray,1);
     }
 };
 
 var editRow = function () {
-    document.getElementById("firstName").innerHTML = "<input type='text' value='" + document.getElementById("firstName").innerHTML + "'>";
-    document.getElementById("lastName").innerHTML = "<input type='text' value='" + document.getElementById("lastName").innerHTML + "'>";
-    document.getElementById("email").innerHTML = "<input type='text' value='" + document.getElementById("email").innerHTML + "'>";
-    document.getElementById("street").innerHTML = "<input type='text' value='" + document.getElementById("street").innerHTML + "'>";
-    document.getElementById("additionalInfo").innerHTML = "<input type='text' value='" + document.getElementById("additionalInfo").innerHTML + "'>";
-    document.getElementById("hDescription").innerHTML = "<input type='text' value='" + document.getElementById("hDescription").innerHTML + "'>";
-    document.getElementById("name").innerHTML = "<input type='text' value='" + document.getElementById("name").innerHTML + "'>";
-    document.getElementById("pDescription").innerHTML = "<input type='text' value='" + document.getElementById("pDescription").innerHTML + "'>";
-    document.getElementById("number").innerHTML = "<input type='text' value='" + document.getElementById("number").innerHTML + "'>";
-    document.getElementById("city").innerHTML = "<input type='text' value='" + document.getElementById("city").innerHTML + "'>";
-    document.getElementById("zip").innerHTML = "<input type='text' value='" + document.getElementById("zip").innerHTML + "'>";
+    document.getElementById("firstName").innerHTML = "<input type='text' id='iFirstName' value='" + document.getElementById("firstName").innerHTML + "'>";
+    document.getElementById("lastName").innerHTML = "<input type='text' id='iLastName' value='" + document.getElementById("lastName").innerHTML + "'>";
+    document.getElementById("email").innerHTML = "<input type='text' id='iEmail' value='" + document.getElementById("email").innerHTML + "'>";
+    document.getElementById("street").innerHTML = "<input type='text' id='iStreet' value='" + document.getElementById("street").innerHTML + "'>";
+    document.getElementById("additionalInfo").innerHTML = "<input type='text' id='IadditionalInfo' value='" + document.getElementById("additionalInfo").innerHTML + "'>";
+    document.getElementById("hDescription").innerHTML = "<input type='text' id='ihDescription' value='" + document.getElementById("hDescription").innerHTML + "'>";
+    document.getElementById("name").innerHTML = "<input type='text' id='iName' value='" + document.getElementById("name").innerHTML + "'>";
+    document.getElementById("pDescription").innerHTML = "<input type='text' id='ipDescription' value='" + document.getElementById("pDescription").innerHTML + "'>";
+    document.getElementById("number").innerHTML = "<input type='text' id='iNumber' value='" + document.getElementById("number").innerHTML + "'>";
+    document.getElementById("city").innerHTML = "<input type='text' id='iCity' value='" + document.getElementById("city").innerHTML + "'>";
+    document.getElementById("zip").innerHTML = "<input type='text' id='iZip' value='" + document.getElementById("zip").innerHTML + "'>";
 };
 
 var saveRow = function () {
-//    document.getElementById("firstName").innerHTML="";
+    document.getElementById("firstName").innerHTML= document.getElementById("iFirstName").value;
+    document.getElementById("lastName").innerHTML= document.getElementById("iLastName").value;
+    document.getElementById("email").innerHTML= document.getElementById("iEmail").value;
+    document.getElementById("street").innerHTML= document.getElementById("iStreet").value;
+    document.getElementById("additionalInfo").innerHTML= document.getElementById("IadditionalInfo").value;
+    document.getElementById("hDescription").innerHTML= document.getElementById("ihDescription").value;
+    document.getElementById("name").innerHTML= document.getElementById("iName").value;
+    document.getElementById("pDescription").innerHTML= document.getElementById("ipDescription").value;
+    document.getElementById("number").innerHTML= document.getElementById("iNumber").value;
+    document.getElementById("city").innerHTML= document.getElementById("iCity").value;
+    document.getElementById("zip").innerHTML= document.getElementById("iZip").value;
 };
 
-var populateTable = function (personArray) {
+var populateTable = function (personArray,bool) {
     tabBody.innerHTML = null;
     createHeaders();
     for (var i = 0; i < personArray.length; i++) {
@@ -112,7 +145,6 @@ var populateTable = function (personArray) {
         cell10 = document.createElement("td");
         cell11 = document.createElement("td");
         cell12 = document.createElement("td");
-        a = document.createElement("a");
         textnode1 = document.createTextNode(personArray[i].id);
         textnode2 = document.createTextNode(personArray[i].firstName);
         textnode3 = document.createTextNode(personArray[i].lastName);
@@ -125,9 +157,9 @@ var populateTable = function (personArray) {
         textnode10 = document.createTextNode(personArray[i].phones[0].number);
         textnode11 = document.createTextNode(personArray[i].cityInfo.city);
         textnode12 = document.createTextNode(personArray[i].cityInfo.zip);
-        cell1.appendChild(a);
-        a.appendChild(textnode1);
-        a.setAttribute('onclick', "fetchData(\"Person/" + personArray[i].id + "\")");
+        cell1.appendChild(textnode1);
+        if(bool===1){
+        row.setAttribute('onclick', "fetchData(\"Person/" + personArray[i].id + "\")");}
         cell2.appendChild(textnode2);
         cell2.setAttribute('id', 'firstName');
         cell3.appendChild(textnode3);
