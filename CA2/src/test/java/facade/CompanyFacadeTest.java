@@ -25,7 +25,6 @@ public class CompanyFacadeTest {
     @Test
     public void testGetCompanyByCvr() {
         Company c = cf.getCompanyByCvr(12345671);
-        System.out.println(c.getName());
         assertEquals(" Carson Dermatology Assoc", c.getName());
     }
 

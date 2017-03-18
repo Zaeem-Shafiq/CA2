@@ -3,28 +3,25 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <table border="1">
-            <tbody>
-                <tr>
-    <th>ID</th>
-    <th>Firstname</th> 
-    <th>Lastname</th>
-    <th>Email</th>
-    <th>Street Address</th>
-    <th>Description</th>
-    <th>Hobby</th>
-    <th>Description</th>
-    <th>Phone type</th>
-    <th>Number</th>
-    <th>City</th>
-    <th>Zip</th>
-  </tr>
-            </tbody>
-        </table>
-        
-        <script src="js.js" type="text/javascript"></script>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12"><h1>All persons:</h1>
+                    <table border="0" class="table" id='persons'>
+                        <tbody>
+                    </table>
+                    <button onclick="editPerson()" id='btn1'>Edit</button>
+                    <button onclick="fetchData('Person')" id='btn'>Back</button>
+                </div>
+            </div>
+        </div>
+            <script src="js.js" type="text/javascript"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
+
+
 </html>

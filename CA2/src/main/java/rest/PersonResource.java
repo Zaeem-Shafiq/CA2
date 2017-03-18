@@ -39,7 +39,6 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllPersons() throws PersonNotFoundException {
         try {
-            System.out.println("prøver");
             List<Person> persons = personFacade.getPersons();
             List<PersonJson> personsJson = new ArrayList();
             for (Person person : persons) {
@@ -100,7 +99,9 @@ public class PersonResource {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public String updatePerson(String content) {
+        System.out.println(content);
         Person person = gson.fromJson(content, Person.class);
+        System.out.println(person);
         for (Phone phone : person.getPhones()) {
             phone.setInfoEntity(person);
         }

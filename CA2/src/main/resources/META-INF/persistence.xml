@@ -15,9 +15,8 @@
       <property name="javax.persistence.jdbc.user" value="polygon"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="Polygon16sundbygning!"/>
-      <property name="javax.persistence.sql-load-script-source" value="script/populateZip.sql"/>
+      <!--<property name="javax.persistence.sql-load-script-source" value="script/populateZip.sql"/>-->
       <property name="eclipselink.canonicalmodel.subpackage" value="ca2"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
   <persistence-unit name="pu_test" transaction-type="RESOURCE_LOCAL">
