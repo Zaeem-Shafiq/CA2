@@ -60,8 +60,8 @@ var deletePerson = function () {
     fetch(url, {method: "DELETE"}).then(function (res) {
         return res.json();
     }).then(function (data) {
-                fetchData('Person');
-            });
+        fetchData('Person');
+    });
 };
 
 var editPerson = function () {

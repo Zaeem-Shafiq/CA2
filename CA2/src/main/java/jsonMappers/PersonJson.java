@@ -6,10 +6,6 @@ import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Joacim
- */
 public class PersonJson {
 
     public int id;

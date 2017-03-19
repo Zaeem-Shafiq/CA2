@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>All persons:</h1> 
+
+            <button onclick="createPerson()">Create person</button>
+            <button id='savePerson' onclick="savePerson()">save person</button>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table border="0" class="table table-bordered table-responsive table-hover" id='persons'>
+                        <tbody>
+                    </table>
+                    <button onclick="editPerson()" id='btn1'>Save changes</button>
+                    <button onclick="deletePerson()" id='btn'>Delete Person</button>
+                    <button onclick="fetchData('Person')" id='btn2'>Back</button>
+                </div>
+            </div>
+        </div>
+        <div id="createPerson">
+            FirstName<input id ="cFirstName" type="text" name="Name" value="" />
+            <br/>
+            lastName<input id="cLastName" type="text" name="Name" value="" />
+            <br/>
+            Email<input id="cEail" type="text" name="Name" value="" />
+            <br/>
+            Street Address<input id="cStreetAddress" type="text" name="Name" value="" />
+            <br/>
+            Description<input id="cDescription" type="text" name="Name" value="" />
+            <br/>
+            Hobby<input id="cHobby" type="text" name="Name" value="" />
+            <br/>
+            Description<input id="cHDescription" type="text" name="Name" value="" />
+            <br/>
+            Phone type<input id="cPhone" type="text" name="Name" value="" />
+            <br/>
+            Number<input id="cNumber" type="text" name="Name" value="" />
+            <br/>
+            City<input id="cCity" type="text" name="Name" value="" />
+            <br/>
+            Zip<input id="cZip" type="text" name="Name" value="" />
+
+
+        </div>
+        <div id="authors" style="display: none;"> Joacim Vetterlain, Zaeem Shafiq, Asger Lundblad </div>
+        <div id="class" style="display: none;">A</div>
+        <div id= "group" style="display: none;">1</div>
+        <script src="js.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+
+
+</html>

@@ -2,10 +2,6 @@ package jsonMappers;
 
 import entity.Address;
 
-/**
- *
- * @author Joacim
- */
 public class AddressJson {
     public String street, additionalInfo;
     public AddressJson(Address address) {

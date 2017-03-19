@@ -4,10 +4,6 @@ import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Joacim
- */
 public class PersonContact {
 
     public int id;
