@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -105,7 +104,6 @@ public class PersonResource {
     public String updatePerson(String content) throws PersonNotFoundException {
         try {
             Person person = gson.fromJson(content, Person.class);
-            System.out.println(person);
             for (Phone phone : person.getPhones()) {
                 phone.setInfoEntity(person);
             }
@@ -117,7 +115,6 @@ public class PersonResource {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String postData(String content) throws PersonNotFoundException {
         try {
