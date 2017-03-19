@@ -8,7 +8,7 @@ public class ExceptionMapper implements javax.ws.rs.ext.ExceptionMapper<Throwabl
 
     @Override
     public Response toResponse(Throwable e) {
-        return Response.status(500).entity("{\"code\": 500, \"message\": \"Internal server Error, we are very sorry for the inconvenience, "+ e.getStackTrace()+"\" }").build();
+        return Response.status(500).entity("{\"code\": 500, \"message\": \"Internal server Error, we are very sorry for the inconvenience" + "\" }").build();
     }
 
 }

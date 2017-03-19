@@ -11,9 +11,10 @@
     <body>
         <div class="container">
             <h3>Description of the REST API, error responses and JSON format</h3>
-            <p>Vi har lavet vores REST således, at den gør brug af nogle mappers, som</p>
+            <p>Vi har lavet vores REST således, at den gør brug af nogle mappers. Dette har vi valgt for nemmere at kunne konvertere et java objekt til JSON, mapper klasserne er næsten ens til java klasserne, udover de cirkulære referencer er fjernet</p>
+            <p>Vi har lavet nogle exception klasser, som håndterer exceptions. Vi har bl.a. en PersonNotFoundException og en PersonNotFoundExceptionMapper. Denne type exception biver kastet, hvis man prøver at hente en person som ikke findes (dvs. den bliver f.eks. kastet af vores rest-metode getPersonById). Denne exception giver et svar tilbage i JSON-format med fejlkode 404 og en passende format. Derudover har vi også lavet exceptions til, hvis der sker en fejl på serveren: så vil der også blive kastet en exception, som giver et svar i JSON-format med fejlkode 500 og beskeden "Internal server Error, we are very sorry for the inconvenience".</p>
             <h3>Explaintion of our test strategy</h3>
-            <p></p>
+            <p>Vi har valgt at lave tests til både vores facade og vores REST API. Vores tests, som tester facader har vi lavet for at være sikre på, at det er muligt at hente, opdatere og slette personer i databasen. Disse test ligger under "Test Packages" og i facade-mappen, hvorfra man kan køre dem. Vi har testet alle metoder i begge vores facader og alle vores test bliver bestået, når man kører dem, hvilket viser, at alle vores metoder i begge facader virker.</p>
             <h3>A section stating who worked on what in your group</h3>
             <p>Opgavefordeling:
                 <br>
@@ -36,6 +37,8 @@
             <h3>Description of the strategy chosen to implement inheritance and why this strategy was chosen</h3>
             <p>Vi har valgt at gøre brug af join strategien, dvs. alle klasser som arver fra superklassen bliver samlet i én tabel, som så får en ekstra række (DTYPE), som angiver typen. Vi har valgt dette, da vi mente, at det ville gøre det mere overskuligt at have det hele i en tabel og da vi ikke ønskede null-værdier i databesen hver gang man oprettede en person/virksomhed (det ville man have haft, hvis vi brugte single strategien).</p>
             <h3>How to test the system</h3>
+            <p>Lidt om vores tests:</p>
+            <p>Vi har testet facade klasserne ved at mocke databasen. Dette gøres ved at lave noget der hedder in-memory database, det er en database som kun er i computerens hukommelse. Før hver test opretter vi in-memory databasen, giver den sammen tabeller som den rigtige database og fylder noget random data i. Rest tester vi ved at lave intergration tests, dette gør at vi kan builde et Maven project. Normalt kan du ikke builde maven hvis en test failer, men for at test rest skal serveren køre, så testen vil faile når du prøver at builde. Ved at kalde dem intergrationTest kan vi exclude dem i pom.xml filen.</p>
             <p>Måden man bruger vores website på:</p>
             <p>Når siden åbnes, mødes man af en liste bestående af alle personer</p>
             <p>Hvis man vil oprette en person trykkes der på Create Person knappen, og man kommer ind på en ny side hvor man kan udfylde formene, og trykke save person for at oprette en ny person i databasen via POST</p>
