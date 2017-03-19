@@ -7,6 +7,7 @@ window.onload = function (e) {
 var createPerson = function () {
     tabBody.innerHTML = null;
     document.getElementById("createPerson").style.visibility = "visible";
+    document.getElementById("savePerson").style.visibility = "visible";
     document.getElementById("btn2").style.visibility = "visible";
 };
 
@@ -42,7 +43,7 @@ var savePerson = function () {
     promise.then(function (response) {
         return response.text();
     }).then(function (text) {
-      console.log(text);
+        fetchData('Person');
     });
 
 
@@ -132,6 +133,7 @@ var fetchData = function (urli) {
 
 var createJsonArray = function (text) {
     document.getElementById("createPerson").style.visibility = "hidden";
+    document.getElementById("savePerson").style.visibility = "hidden";
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("btn1").style.visibility = "hidden";
     document.getElementById("btn2").style.visibility = "hidden";

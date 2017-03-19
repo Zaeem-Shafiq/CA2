@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -106,6 +105,7 @@ public class PersonResource {
         try {
             Person person = gson.fromJson(content, Person.class);
             System.out.println(person);
+            System.out.println("wht");
             for (Phone phone : person.getPhones()) {
                 phone.setInfoEntity(person);
             }
