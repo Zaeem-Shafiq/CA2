@@ -26,7 +26,7 @@ public class PersonFacade {
         PersonFacade pf = new PersonFacade("PU");
 //        System.out.println(pf.getPersonById(1).toString());
 //        System.out.println(pf.getPersonByPhoneNumber("17136178").toString());
-//       System.out.println(pf.getPersons().toString());
+//        System.out.println(pf.getPersons().toString());
 //        System.out.println(pf.getPersonsByZip(2600).toString());
 //        System.out.println(pf.getPersonsByHobby("fishing").toString());
 //        System.out.println(pf.getCountOfPersonsWithHobby("fishing"));

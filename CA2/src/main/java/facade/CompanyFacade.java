@@ -20,14 +20,14 @@ public class CompanyFacade {
         return emf.createEntityManager();
     }
 
-    public static void main(String[] args) {
-        CompanyFacade cf = new CompanyFacade("PU");
+//    public static void main(String[] args) {
+//        CompanyFacade cf = new CompanyFacade("PU");
 //        System.out.println(cf.getCompanyById(2));
 //        System.out.println(cf.getCompanyByCvr(45313913).toString());
 //        System.out.println(cf.getCompanyByPhoneNumber("45942644").toString());
 //        System.out.println(cf.getCompaniesWithEmployeesMoreThan(200).toString());
 //        System.out.println(cf.deleteCompany(2));
-    }
+//    }
 
     public Company getCompanyById(int id) {
         EntityManager em = getEntityManager();

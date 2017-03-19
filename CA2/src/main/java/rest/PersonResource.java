@@ -2,7 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entity.Hobby;
+import com.google.gson.JsonSyntaxException;
 import entity.Person;
 import entity.Phone;
 import exception.PersonNotFoundException;
@@ -91,27 +91,34 @@ public class PersonResource {
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deletePerson(@PathParam("id") int id) {
-        personFacade.deletePerson(id);
-        return "{\"isSucced\" : \"Deleted\"}";
+    public String deletePerson(@PathParam("id") int id) throws PersonNotFoundException {
+        try {
+            personFacade.deletePerson(id);
+            return "{\"isSucced\" : \"Deleted\"}";
+        } catch (Exception e) {
+            throw new PersonNotFoundException("Person with requested id could not be deleted");
+        }
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public String updatePerson(String content) {
-        Person person = gson.fromJson(content, Person.class);
-        System.out.println(person);
-        for (Phone phone : person.getPhones()) {
-            phone.setInfoEntity(person);
+    public String updatePerson(String content) throws PersonNotFoundException {
+        try {
+            Person person = gson.fromJson(content, Person.class);
+            System.out.println(person);
+            for (Phone phone : person.getPhones()) {
+                phone.setInfoEntity(person);
+            }
+            personFacade.updatePerson(person);
+            return "{\"isSucced\" : \"Updated\"}";
+        } catch (JsonSyntaxException e) {
+            throw new PersonNotFoundException("Person could not be updated");
         }
-        personFacade.updatePerson(person);
-        return "{\"isSucced\" : \"Updated\"}";
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public String postData(String content) throws PersonNotFoundException {
-        System.out.println(content);
         try {
             Person person = gson.fromJson(content, Person.class);
             for (Phone phone : person.getPhones()) {
@@ -119,8 +126,8 @@ public class PersonResource {
             }
             personFacade.createPerson(person);
             return gson.toJson(person);
-        } catch (Exception e) {
-            throw new PersonNotFoundException("Failed to create person");
+        } catch (JsonSyntaxException e) {
+            throw new PersonNotFoundException("Person could not be added");
         }
     }
 
