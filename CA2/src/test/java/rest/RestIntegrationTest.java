@@ -1,3 +1,5 @@
+package rest;
+
 
 import entity.Person;
 import facade.PersonFacade;
