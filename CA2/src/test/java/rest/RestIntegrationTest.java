@@ -7,7 +7,6 @@ import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
 public class RestIntegrationTest {
@@ -52,33 +51,9 @@ public class RestIntegrationTest {
 
     @Test
     public void updatePersonById() {
-        String person = "{\n"
-                + "  \"id\": 13,\n"
-                + "  \"firstName\": \"Laurette\",\n"
-                + "  \"lastName\": \"Dougherty\",\n"
-                + "  \"email\": \"ccohen123@icloud.com\",\n"
-                + "  \"address\": {\n"
-                + "    \"street\": \" 8088 Clark Court 22\",\n"
-                + "    \"additionalInfo\": \"desc\"\n"
-                + "  },\n"
-                + "  \"hobbies\": [\n"
-                + "    {\n"
-                + "      \"description\": \"run around\",\n"
-                + "      \"name\": \"football\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"phones\": [\n"
-                + "    {\n"
-                + "      \"description\": \"Mobile\",\n"
-                + "      \"number\": \"16345723\"\n"
-                + "    }\n"
-                + "  ],\n"
-                + "  \"cityInfo\": {\n"
-                + "    \"city\": \"København K\",\n"
-                + "    \"zip\": 1402\n"
-                + "  }\n"
-                + "}";
-        given().body(person).when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
+        Person p = new PersonFacade("PU").getPersons().get(new PersonFacade("PU").getPersons().size()-1); 
+        p.setFirstName("bobby");
+        given().body(p).when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
     }
 
 }

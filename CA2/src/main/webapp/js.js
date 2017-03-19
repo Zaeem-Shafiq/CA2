@@ -38,7 +38,7 @@ var savePerson = function () {
         ]
     };
     var data = JSON.stringify(person1);
-    var url = "http://localhost:8084/CA2/api/Person";
+    var url = "https://vetterlain.dk/CA2/api/Person";
     var promise = fetch(url, {method: "post", headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: data});
     promise.then(function (response) {
         return response.text();
@@ -56,7 +56,7 @@ var deletePerson = function () {
             id: $td.eq(0).text()
         };
     }).get();
-    var url = "http://localhost:8084/CA2/api/Person/" + tbl[0].id;
+    var url = "https://vetterlain.dk/CA2/api/Person/" + tbl[0].id;
     fetch(url, {method: "DELETE"}).then(function (res) {
         return res.json();
     }).then(function (data) {
@@ -111,7 +111,7 @@ var editPerson = function () {
         ]
     };
     var data = JSON.stringify(person1);
-    var url = "http://localhost:8084/CA2/api/Person";
+    var url = "https://vetterlain.dk/CA2/api/Person";
     fetch(url, {method: "PUT", body: data})
             .then(function (res) {
                 return res.json();
@@ -122,7 +122,7 @@ var editPerson = function () {
 };
 
 var fetchData = function (urli) {
-    var url = "http://localhost:8084/CA2/api/" + urli;
+    var url = "https://vetterlain.dk/CA2/api/" + urli;
     var promise = fetch(url, {method: 'get'});
     promise.then(function (response) {
         return response.text();
