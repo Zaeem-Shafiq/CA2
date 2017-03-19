@@ -36,7 +36,11 @@
             <h3>Description of the strategy chosen to implement inheritance and why this strategy was chosen</h3>
             <p>Vi har valgt at gøre brug af join strategien, dvs. alle klasser som arver fra superklassen bliver samlet i én tabel, som så får en ekstra række (DTYPE), som angiver typen. Vi har valgt dette, da vi mente, at det ville gøre det mere overskuligt at have det hele i en tabel og da vi ikke ønskede null-værdier i databesen hver gang man oprettede en person/virksomhed (det ville man have haft, hvis vi brugte single strategien).</p>
             <h3>How to test the system</h3>
-            <p></p>
+            <p>Måden man bruger vores website på:</p>
+            <p>Når siden åbnes, mødes man af en liste bestående af alle personer</p>
+            <p>Hvis man vil oprette en person trykkes der på Create Person knappen, og man kommer ind på en ny side hvor man kan udfylde formene, og trykke save person for at oprette en ny person i databasen via POST</p>
+            <p>Man kan også klikke på en person i tabellen, og her få mulighed for at redigere eller slette personen</p>
+            <p>Alt kommunikation med server foregår asynkront.</p>
         </div>
     </body>
 </html>
