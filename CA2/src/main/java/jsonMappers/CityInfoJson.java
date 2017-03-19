@@ -2,10 +2,6 @@ package jsonMappers;
 
 import entity.CityInfo;
 
-/**
- *
- * @author Joacim
- */
 public class CityInfoJson {
 
     public String city;

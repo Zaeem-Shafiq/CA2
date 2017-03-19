@@ -4,17 +4,21 @@ window.onload = function (e) {
     fetchData("Person");
 };
 
-var deletePerson = function(){
+var deletePerson = function () {
     var tbl = $('#persons tr:has(td)').map(function (i, v) {
         var $td = $('td', this);
         return {
             id: $td.eq(0).text(),
-            
+
         };
     }).get();
-    var url = "http://localhost:8084/CA2/api/Person/"+tbl[0].id;
-    fetch(url, {method: "DELETE"}).then(function(res){ return res.json(); })
-    .then(function(data){ fetchData('Person') })
+    var url = "http://localhost:8084/CA2/api/Person/" + tbl[0].id;
+    fetch(url, {method: "DELETE"}).then(function (res) {
+        return res.json();
+    })
+            .then(function (data) {
+                fetchData('Person')
+            })
 }
 
 var editPerson = function () {
@@ -66,10 +70,14 @@ var editPerson = function () {
     var data = JSON.stringify(person1);
     var url = "http://localhost:8084/CA2/api/Person";
     fetch(url, {method: "PUT", body: data})
-    .then(function(res){ return res.json(); })
-    .then(function(data){ fetchData('Person') })
-            
-    ;
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                fetchData('Person')
+            })
+
+            ;
 //    fetchData('Person');
 };
 
@@ -96,7 +104,7 @@ var createJsonArray = function (text) {
         populateTable(personArray);
         editRow();
     } else if (personArray.length > 0) {
-        populateTable(personArray,1);
+        populateTable(personArray, 1);
     }
 };
 
@@ -115,20 +123,20 @@ var editRow = function () {
 };
 
 var saveRow = function () {
-    document.getElementById("firstName").innerHTML= document.getElementById("iFirstName").value;
-    document.getElementById("lastName").innerHTML= document.getElementById("iLastName").value;
-    document.getElementById("email").innerHTML= document.getElementById("iEmail").value;
-    document.getElementById("street").innerHTML= document.getElementById("iStreet").value;
-    document.getElementById("additionalInfo").innerHTML= document.getElementById("IadditionalInfo").value;
-    document.getElementById("hDescription").innerHTML= document.getElementById("ihDescription").value;
-    document.getElementById("name").innerHTML= document.getElementById("iName").value;
-    document.getElementById("pDescription").innerHTML= document.getElementById("ipDescription").value;
-    document.getElementById("number").innerHTML= document.getElementById("iNumber").value;
-    document.getElementById("city").innerHTML= document.getElementById("iCity").value;
-    document.getElementById("zip").innerHTML= document.getElementById("iZip").value;
+    document.getElementById("firstName").innerHTML = document.getElementById("iFirstName").value;
+    document.getElementById("lastName").innerHTML = document.getElementById("iLastName").value;
+    document.getElementById("email").innerHTML = document.getElementById("iEmail").value;
+    document.getElementById("street").innerHTML = document.getElementById("iStreet").value;
+    document.getElementById("additionalInfo").innerHTML = document.getElementById("IadditionalInfo").value;
+    document.getElementById("hDescription").innerHTML = document.getElementById("ihDescription").value;
+    document.getElementById("name").innerHTML = document.getElementById("iName").value;
+    document.getElementById("pDescription").innerHTML = document.getElementById("ipDescription").value;
+    document.getElementById("number").innerHTML = document.getElementById("iNumber").value;
+    document.getElementById("city").innerHTML = document.getElementById("iCity").value;
+    document.getElementById("zip").innerHTML = document.getElementById("iZip").value;
 };
 
-var populateTable = function (personArray,bool) {
+var populateTable = function (personArray, bool) {
     tabBody.innerHTML = null;
     createHeaders();
     for (var i = 0; i < personArray.length; i++) {
@@ -158,8 +166,9 @@ var populateTable = function (personArray,bool) {
         textnode11 = document.createTextNode(personArray[i].cityInfo.city);
         textnode12 = document.createTextNode(personArray[i].cityInfo.zip);
         cell1.appendChild(textnode1);
-        if(bool===1){
-        row.setAttribute('onclick', "fetchData(\"Person/" + personArray[i].id + "\")");}
+        if (bool === 1) {
+            row.setAttribute('onclick', "fetchData(\"Person/" + personArray[i].id + "\")");
+        }
         cell2.appendChild(textnode2);
         cell2.setAttribute('id', 'firstName');
         cell3.appendChild(textnode3);

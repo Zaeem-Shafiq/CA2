@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12"><h1>All persons:</h1>
+                    <table border="0" class="table table-bordered table-responsive table-hover" id='persons'>
+                        <tbody>
+                    </table>
+                    <button onclick="editPerson()" id='btn1'>Save changes</button>
+                    <button onclick="deletePerson()" id='btn'>Delete Person</button>
+                    <button onclick="fetchData('Person')" id='btn2'>Back</button>
+                </div>
+            </div>
+        </div>
+        <script src="js.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+</html>

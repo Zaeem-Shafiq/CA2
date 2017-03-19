@@ -1,6 +1,5 @@
 package rest;
 
-
 import entity.Person;
 import facade.PersonFacade;
 import io.restassured.RestAssured;
