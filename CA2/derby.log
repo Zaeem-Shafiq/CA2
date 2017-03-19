@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sun Mar 19 12:04:17 CET 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015a-e63d-3d9b-00000a5481e8 
+Sun Mar 19 17:26:20 CET 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015a-e764-1738-00000a528790 
 on database directory C:\Users\Joacim.JVELT\Desktop\ca2\CA2\target\Users with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
 Loaded from file:/C:/Users/Joacim.JVELT/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Sun Microsystems Inc.
