@@ -104,8 +104,6 @@ public class PersonResource {
     public String updatePerson(String content) throws PersonNotFoundException {
         try {
             Person person = gson.fromJson(content, Person.class);
-            System.out.println(person);
-            System.out.println("wht");
             for (Phone phone : person.getPhones()) {
                 phone.setInfoEntity(person);
             }
