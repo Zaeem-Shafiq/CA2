@@ -109,15 +109,19 @@ public class PersonResource {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String postData(String content) {
-        Person person = gson.fromJson(content, Person.class);
-        for (Phone phone : person.getPhones()) {
-            phone.setInfoEntity(person);
+    public String postData(String content) throws PersonNotFoundException {
+        System.out.println(content);
+        try {
+            Person person = gson.fromJson(content, Person.class);
+            for (Phone phone : person.getPhones()) {
+                phone.setInfoEntity(person);
+            }
+            personFacade.createPerson(person);
+            return gson.toJson(person);
+        } catch (Exception e) {
+            throw new PersonNotFoundException("Failed to create person");
         }
-        personFacade.createPerson(person);
-        return gson.toJson(person);
     }
 
 }
