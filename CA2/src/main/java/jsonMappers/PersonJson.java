@@ -15,7 +15,7 @@ public class PersonJson {
     public List<PhoneJson> phones = new ArrayList();
     public CityInfoJson cityInfo;
 
-    public PersonJson(Person person) {
+    public PersonJson(Person person) {        
         this.id = person.getId();
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
@@ -31,5 +31,4 @@ public class PersonJson {
             hobbies.add(new jsonMappers.HobbyJson(hobby));
         }
     }
-
 }

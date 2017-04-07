@@ -102,6 +102,7 @@ public class PersonResource {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public String updatePerson(String content) throws PersonNotFoundException {
+        System.out.println(content);
         try {
             Person person = gson.fromJson(content, Person.class);
             for (Phone phone : person.getPhones()) {

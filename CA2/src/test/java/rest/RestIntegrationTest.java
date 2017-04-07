@@ -1,10 +1,14 @@
 package rest;
 
+import com.google.gson.Gson;
 import entity.Person;
+import entity.Phone;
 import facade.PersonFacade;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
+import jsonMappers.PersonContact;
+import jsonMappers.PersonJson;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -51,9 +55,36 @@ public class RestIntegrationTest {
 
     @Test
     public void updatePersonById() {
-        Person p = new PersonFacade("PU").getPersons().get(new PersonFacade("PU").getPersons().size()-1); 
-        p.setFirstName("bobby");
-        given().body(p).when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
+        Gson gson = new Gson();
+        String content = "{\n"
+                + "  \"id\": 5,\n"
+                + "  \"firstName\": \"Jesper\",\n"
+                + "  \"lastName\": \"Callahan\",\n"
+                + "  \"email\": \"dleconte@verizon.net\",\n"
+                + "  \"address\": {\n"
+                + "    \"street\": \" 9621 Briarwood St. 120\",\n"
+                + "    \"additionalInfo\": \"desc\",\n"
+                + "    \"cityInfo\": {\n"
+                + "    \"city\": \"København K\",\n"
+                + "    \"zip\": 1440\n"
+                + "  },\n"
+                + "  \"hobbies\": [\n"
+                + "    {\n"
+                + "      \"description\": \"sow things\",\n"
+                + "      \"name\": \"sowing\"\n"
+                + "    }\n"
+                + "  ],\n"
+                + "  \"phones\": [\n"
+                + "    {\n"
+                + "      \"description\": \"Mobile\",\n"
+                + "      \"number\": \"13036074\"\n"
+                + "    }\n"
+                + "  ]\n"
+                + "  \n"
+                + "  }\n"
+                + "}";
+            
+        given().body(content).when().put("api/Person/").then().statusCode(200).body("isSucced", equalTo("Updated"));
     }
 
 }
